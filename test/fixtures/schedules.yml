@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  datetime: 2016-02-24 11:57:45
+  datetime: 2016-02-24 17:52:01
+  client_id: 
 
 two:
-  datetime: 2016-02-24 11:57:45
+  datetime: 2016-02-24 17:52:01
+  client_id: 
