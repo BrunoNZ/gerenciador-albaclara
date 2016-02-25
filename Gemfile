@@ -28,3 +28,4 @@ group :development do
 end
 
 gem 'sidekiq'
+gem 'whenever'
