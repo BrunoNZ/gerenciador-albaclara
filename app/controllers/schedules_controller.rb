@@ -5,6 +5,7 @@ class SchedulesController < ApplicationController
   # GET /schedules.json
   def index
     @schedules = Schedule.all
+    execute_schedules_of_the_day
   end
 
   # GET /schedules/1
@@ -69,6 +70,6 @@ class SchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:datetime, :client_id)
+      params.require(:schedule).permit(:weekday, :time, :client_id)
     end
 end

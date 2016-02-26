@@ -2,7 +2,18 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :datetime %>
+    <%= f.input :weekday,
+      collection: [
+        ['Sunday', 0],
+        ['Monday', 1],
+        ['Tuesday', 2],
+        ['Wednesday', 3],
+        ['Thursday', 4],
+        ['Friday', 5],
+        ['Saturday', 6]
+      ],
+      selected: 0 %>
+    <%= f.input :time %>
     <%= f.association :client %>
   </div>
 
