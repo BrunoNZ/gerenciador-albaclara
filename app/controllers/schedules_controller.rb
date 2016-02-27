@@ -1,11 +1,12 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
+  require 'sidekiq/api'
+
   # GET /schedules
   # GET /schedules.json
   def index
     @schedules = Schedule.all
-    execute_schedules_of_the_day
   end
 
   # GET /schedules/1
