@@ -28,4 +28,5 @@ group :development do
 end
 
 gem 'sidekiq'
+gem 'sinatra', :require => nil
 gem 'whenever'
