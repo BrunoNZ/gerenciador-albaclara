@@ -31,3 +31,4 @@ gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'whenever'
 gem 'cocoon'
+gem 'premailer', '~> 1.8', '>= 1.8.6'

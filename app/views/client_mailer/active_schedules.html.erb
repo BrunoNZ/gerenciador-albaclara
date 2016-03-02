@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <style type="text/css">
+    .teste { background-color:#aaaaaa; font-size:14px; font-family:Verdana,Helvetica,Arial; }
+  </style>
+
+  <body>
+    <h1>Agendamentos ativos para <%= @client.name %></h1>
+
+    <table border="1" cellpadding="10" cellspacing="0">
+      <thead>
+        <tr class="teste">
+          <th>Name</th>
+          <th>Contact name</th>
+          <th>Contact phone</th>
+          <th>Contact date</th>
+          <th>Visit datetime</th>
+          <th>Address</th>
+          <th>Observation</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @schedules.each do |schedule| %>
+          <tr>
+            <td><%= schedule.name %></td>
+            <td><%= schedule.contact_name %></td>
+            <td><%= schedule.contact_phone %></td>
+            <td><%= schedule.contact_date %></td>
+            <td><%= schedule.visit_datetime %></td>
+            <td><%= schedule.address %></td>
+            <td><%= schedule.observation %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+  </body>
+</html>
