@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require cocoon
 //= require bootstrap-sprockets
+//= require bootstrap-table
+//= require bootstrap-table-pt-BR
 //= require_tree .
