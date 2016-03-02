@@ -2,41 +2,16 @@
 
 <h1>Listing Schedules</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Contact name</th>
-      <th>Contact phone</th>
-      <th>Contact date</th>
-      <th>Visit datetime</th>
-      <th>Address</th>
-      <th>Observation</th>
-      <th>Status</th>
-      <th>Client</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @schedules.each do |schedule| %>
-      <tr>
-        <td><%= schedule.name %></td>
-        <td><%= schedule.contact_name %></td>
-        <td><%= schedule.contact_phone %></td>
-        <td><%= schedule.contact_date %></td>
-        <td><%= schedule.visit_datetime %></td>
-        <td><%= schedule.address %></td>
-        <td><%= schedule.observation %></td>
-        <td><%= schedule.status %></td>
-        <td><%= schedule.client %></td>
-        <td><%= link_to 'Show', schedule %></td>
-        <td><%= link_to 'Edit', edit_schedule_path(schedule) %></td>
-        <td><%= link_to 'Destroy', schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= will_paginate %>
+<ul class="clients">
+  <% @schedules.each do |schedule| %>
+    <li>
+      <%= render partial: "schedule_tag", object: schedule, as: "schedule" %>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>
 
 <br>
 

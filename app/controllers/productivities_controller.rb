@@ -4,7 +4,7 @@ class ProductivitiesController < ApplicationController
   # GET /productivities
   # GET /productivities.json
   def index
-    @productivities = Productivity.all
+    @productivities = Productivity.paginate(page: params[:page])
   end
 
   # GET /productivities/1
