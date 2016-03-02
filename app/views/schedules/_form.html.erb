@@ -2,6 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.association :client %>
     <%= f.input :name %>
     <%= f.input :contact_name %>
     <%= f.input :contact_phone %>
@@ -9,8 +10,7 @@
     <%= f.input :visit_datetime %>
     <%= f.input :address %>
     <%= f.input :observation %>
-    <%= f.input :status %>
-    <%= f.association :client %>
+    <!-- <%= f.input :status %> -->
   </div>
 
   <div class="form-actions">
