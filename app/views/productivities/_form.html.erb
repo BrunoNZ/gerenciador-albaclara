@@ -2,13 +2,13 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.association :client %>
     <%= f.input :analysis_start_date %>
     <%= f.input :analysis_end_date %>
     <%= f.input :call_qty %>
     <%= f.input :answered_call_qty %>
     <%= f.input :interlocutor_qty %>
     <%= f.input :schedule_qty %>
-    <%= f.association :client %>
   </div>
 
   <div class="form-actions">
