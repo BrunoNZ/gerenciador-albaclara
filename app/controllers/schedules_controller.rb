@@ -1,9 +1,6 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
-  require 'sidekiq/api'
-  require 'scheduled/mail'
-
   # GET /schedules
   # GET /schedules.json
   def index
@@ -33,7 +30,6 @@ class SchedulesController < ApplicationController
       if @schedule.save
         format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
         format.json { render :show, status: :created, location: @schedule }
-        Scheduled::Mail.delay_send(@schedule)
       else
         format.html { render :new }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
@@ -48,7 +44,6 @@ class SchedulesController < ApplicationController
       if @schedule.update(schedule_params)
         format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @schedule }
-        Scheduled::Mail.delay_send(@schedule)
       else
         format.html { render :edit }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
@@ -63,7 +58,6 @@ class SchedulesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to schedules_url, notice: 'Schedule was successfully destroyed.' }
       format.json { head :no_content }
-      # Scheduled::Mail.cancel_send(@schedule)
     end
   end
 
@@ -75,6 +69,6 @@ class SchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:weekday, :time, :client_id)
+      params.require(:schedule).permit(:name, :contact_name, :contact_phone, :contact_date, :visit_datetime, :address, :observation, :status, :client_id)
     end
 end

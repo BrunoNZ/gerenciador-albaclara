@@ -1,11 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  weekday: 1
-  time: 2016-02-25 21:27:12
+  name: MyString
+  contact_name: MyString
+  contact_phone: MyString
+  contact_date: 2016-03-01
+  visit_datetime: 2016-03-01 21:07:27
+  address: MyString
+  observation: MyText
+  status: 1
   client_id: 
 
 two:
-  weekday: 1
-  time: 2016-02-25 21:27:12
+  name: MyString
+  contact_name: MyString
+  contact_phone: MyString
+  contact_date: 2016-03-01
+  visit_datetime: 2016-03-01 21:07:27
+  address: MyString
+  observation: MyText
+  status: 1
   client_id: 

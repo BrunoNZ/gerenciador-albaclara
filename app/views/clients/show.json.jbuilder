@@ -1,1 +1,1 @@
-json.extract! @client, :id, :name, :address, :email, :phone, :created_at, :updated_at
+json.extract! @client, :id, :name, :billing_date, :contract_start_date, :address, :created_at, :updated_at

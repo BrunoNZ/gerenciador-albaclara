@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Analysis start date:</strong>
+  <%= @productivity.analysis_start_date %>
+</p>
+
+<p>
+  <strong>Analysis end date:</strong>
+  <%= @productivity.analysis_end_date %>
+</p>
+
+<p>
+  <strong>Call qty:</strong>
+  <%= @productivity.call_qty %>
+</p>
+
+<p>
+  <strong>Answered call qty:</strong>
+  <%= @productivity.answered_call_qty %>
+</p>
+
+<p>
+  <strong>Interlocutor qty:</strong>
+  <%= @productivity.interlocutor_qty %>
+</p>
+
+<p>
+  <strong>Schedule qty:</strong>
+  <%= @productivity.schedule_qty %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @productivity.client %>
+</p>
+
+<%= link_to 'Edit', edit_productivity_path(@productivity) %> |
+<%= link_to 'Back', productivities_path %>

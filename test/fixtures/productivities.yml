@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  analysis_start_date: 2016-03-01
+  analysis_end_date: 2016-03-01
+  call_qty: 1
+  answered_call_qty: 1
+  interlocutor_qty: 1
+  schedule_qty: 1
+  client_id: 
+
+two:
+  analysis_start_date: 2016-03-01
+  analysis_end_date: 2016-03-01
+  call_qty: 1
+  answered_call_qty: 1
+  interlocutor_qty: 1
+  schedule_qty: 1
+  client_id: 
