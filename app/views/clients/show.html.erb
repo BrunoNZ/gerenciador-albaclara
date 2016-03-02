@@ -22,9 +22,11 @@
 
 <p>
   <strong>Contatos:</strong>
-  <%= @client.contacts.each do |contact| %>
-    <%= @contact %>
-  <% end %>
+  <ul>
+    <% @client.contacts.each do |contact| %>
+      <li>Nome: <%= contact.name %> | Email: <%= contact.email %> | Telefone: <%= contact.phone %></li>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_client_path(@client) %> |
