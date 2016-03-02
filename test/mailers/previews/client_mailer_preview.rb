@@ -3,4 +3,8 @@ class ClientMailerPreview < ActionMailer::Preview
   def active_schedules
     ClientMailer.active_schedules(Client.first)
   end
+
+  def update_productivity
+    ClientMailer.update_productivity(Client.first)
+  end
 end
