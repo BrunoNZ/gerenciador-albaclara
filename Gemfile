@@ -32,5 +32,3 @@ gem 'sinatra', :require => nil
 gem 'whenever'
 gem 'cocoon'
 gem 'premailer', '~> 1.8', '>= 1.8.6'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'

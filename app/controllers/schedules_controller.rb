@@ -4,7 +4,7 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.paginate(page: params[:page])
+    @schedules = Schedule.all
   end
 
   # GET /schedules/1

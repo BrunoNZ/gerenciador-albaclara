@@ -2,15 +2,37 @@
 
 <h1>Listing Productivities</h1>
 
-<%= will_paginate %>
-<ul class="clients">
-  <% @productivities.each do |productivity| %>
-    <li>
-      <%= render partial: "productivity_tag", object: productivity, as: "productivity" %>
-    </li>
-  <% end %>
-</ul>
-<%= will_paginate %>
+<table>
+  <thead>
+    <tr>
+      <th>Analysis start date</th>
+      <th>Analysis end date</th>
+      <th>Call qty</th>
+      <th>Answered call qty</th>
+      <th>Interlocutor qty</th>
+      <th>Schedule qty</th>
+      <th>Client</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @productivities.each do |productivity| %>
+      <tr>
+        <td><%= productivity.analysis_start_date %></td>
+        <td><%= productivity.analysis_end_date %></td>
+        <td><%= productivity.call_qty %></td>
+        <td><%= productivity.answered_call_qty %></td>
+        <td><%= productivity.interlocutor_qty %></td>
+        <td><%= productivity.schedule_qty %></td>
+        <td><%= productivity.client %></td>
+        <td><%= link_to 'Show', productivity %></td>
+        <td><%= link_to 'Edit', edit_productivity_path(productivity) %></td>
+        <td><%= link_to 'Destroy', productivity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <br>
 
