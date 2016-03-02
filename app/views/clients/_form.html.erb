@@ -8,7 +8,14 @@
     <%= f.input :address %>
   </div>
 
+  <h3>Contatos</h3>
+  <%= f.fields_for :contacts do |contact| %>
+    <%= render "contact_fields", :f => contact %>
+  <% end %>
+
   <div class="form-actions">
+    <%= link_to_add_association 'Adicionar contato', f, :contacts,
+      :class => "btn btn-default", :render_options => {:display => 'inline' } %>
     <%= f.button :submit %>
   </div>
 <% end %>
