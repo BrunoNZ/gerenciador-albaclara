@@ -18,3 +18,10 @@
 //= require bootstrap-table
 //= require bootstrap-table-pt-BR
 //= require_tree .
+
+// Clickable table lines
+jQuery(function($) {
+$("tr[data-link]").click(function() {
+window.location = this.dataset.link
+});
+})
