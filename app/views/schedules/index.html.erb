@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Schedules</h1>
+<h1>Agendamentos</h1>
 
-<%= link_to new_schedule_path, class: "btn btn-success" do %>
-  <span class="glyphicon glyphicon-plus" aria-hidden="true">Novo</i>
+<%= button_to new_schedule_path, class: "btn btn-success" do %>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true">Novo</span>
 <% end %>
 
 <table id="table"
@@ -14,13 +14,14 @@
   data-pagination="true">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Contact name</th>
-      <th>Contact phone</th>
-      <th>Contact date</th>
-      <th>Visit datetime</th>
-      <th>Address</th>
-      <th>Observation</th>
+      <th>Cliente</th>
+      <th>Nome</th>
+      <th>Nome do contato</th>
+      <th>Telefone do contato</th>
+      <th>Data do contato</th>
+      <th>Data da Visita</th>
+      <th>Endereço</th>
+      <th>Observações</th>
       <th>Status</th>
       <th></th>
     </tr>
@@ -29,21 +30,33 @@
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
+        <td><%= link_to schedule.client.name, client_path(schedule.client) %></td>
         <td><%= schedule.name %></td>
         <td><%= schedule.contact_name %></td>
         <td><%= schedule.contact_phone %></td>
         <td><%= schedule.contact_date %></td>
         <td><%= schedule.visit_datetime %></td>
         <td><%= schedule.address %></td>
-        <td><%= schedule.observation %></td>
+        <td class="col-md-2"><%= schedule.observation %></td>
         <td><%= schedule.status %></td>
-        <td>
-          <%= link_to edit_schedule_path(schedule), class: "btn btn-primary" do %>
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></i>
-          <% end %>
-          <%= link_to schedule, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></i>
-          <% end %>
+        <td class="action-btns">
+          <ul class="list-inline">
+            <li>
+              <%= button_to schedule, method: :get, class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <% end %>
+            </li>
+            <li>
+              <%= button_to edit_schedule_path(schedule), method: :get, class: "btn btn-primary" do %>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <% end %>
+            </li>
+            <li>
+              <%= button_to schedule, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <% end %>
+            </li>
+          </ul>
         </td>
       </tr>
     <% end %>

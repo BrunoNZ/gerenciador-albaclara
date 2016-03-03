@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Productivities</h1>
+<h1>Produtividade</h1>
 
-<%= link_to new_productivity_path, class: "btn btn-success" do %>
-  <span class="glyphicon glyphicon-plus" aria-hidden="true">Novo</i>
+<%= button_to new_productivity_path, class: "btn btn-success" do %>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true">Novo</span>
 <% end %>
 
 <table id="table"
@@ -14,12 +14,13 @@
   data-pagination="true">
   <thead>
     <tr>
-      <th>Analysis start date</th>
-      <th>Analysis end date</th>
-      <th>Call qty</th>
-      <th>Answered call qty</th>
-      <th>Interlocutor qty</th>
-      <th>Schedule qty</th>
+      <th>Cliente</th>
+      <th>Início da análise</th>
+      <th>Fim da análise</th>
+      <th>Ligações</th>
+      <th>Ligações respondidas</th>
+      <th>Interlocutores</th>
+      <th>Agendamentos</th>
       <th></th>
     </tr>
   </thead>
@@ -27,19 +28,31 @@
   <tbody>
     <% @productivities.each do |productivity| %>
       <tr>
+        <td><%= link_to productivity.client.name, client_path(productivity.client) %></td>
         <td><%= productivity.analysis_start_date %></td>
         <td><%= productivity.analysis_end_date %></td>
         <td><%= productivity.call_qty %></td>
         <td><%= productivity.answered_call_qty %></td>
         <td><%= productivity.interlocutor_qty %></td>
         <td><%= productivity.schedule_qty %></td>
-        <td>
-          <%= link_to edit_productivity_path(productivity), class: "btn btn-primary" do %>
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></i>
-          <% end %>
-          <%= link_to productivity, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></i>
-          <% end %>
+        <td class="action-btns">
+          <ul class="list-inline">
+            <li>
+              <%= button_to productivity, method: :get, class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <% end %>
+            </li>
+            <li>
+              <%= button_to edit_productivity_path(productivity), method: :get, class: "btn btn-primary" do %>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <% end %>
+            </li>
+            <li>
+              <%= button_to productivity, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <% end %>
+            </li>
+          </ul>
         </td>
       </tr>
     <% end %>

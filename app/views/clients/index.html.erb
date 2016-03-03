@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Clients</h1>
+<h1>Clientes</h1>
 
-<%= link_to new_client_path, class: "btn btn-success" do %>
-  <span class="glyphicon glyphicon-plus" aria-hidden="true">Adicionar cliente</i>
+<%= button_to new_client_path, class: "btn btn-success" do %>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true">Novo</span>
 <% end %>
 
 <table id="table"
@@ -14,10 +14,10 @@
   data-pagination="true">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Billing date</th>
-      <th>Contract start date</th>
-      <th>Address</th>
+      <th>Nome</th>
+      <th>Data de cobrança</th>
+      <th>Início do contrato</th>
+      <th>Endereço</th>
       <th></th>
     </tr>
   </thead>
@@ -29,13 +29,24 @@
         <td><%= client.billing_date %></td>
         <td><%= client.contract_start_date %></td>
         <td><%= client.address %></td>
-        <td>
-          <%= link_to edit_client_path(client), class: "btn btn-primary" do %>
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></i>
-          <% end %>
-          <%= link_to client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></i>
-          <% end %>
+        <td class="action-btns">
+          <ul class="list-inline">
+            <li>
+              <%= button_to client, method: :get, class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <% end %>
+            </li>
+            <li>
+              <%= button_to edit_client_path(client), method: :get, class: "btn btn-primary" do %>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <% end %>
+            </li>
+            <li>
+              <%= button_to client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <% end %>
+            </li>
+          </ul>
         </td>
       </tr>
     <% end %>
