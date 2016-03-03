@@ -19,4 +19,6 @@ Gemfile.lock
 /db/development.sqlite3
 /db/test.sqlite3
 /public/assets
+/config/secrets.yml
+/config/database.yml
 # ignore server scripts
