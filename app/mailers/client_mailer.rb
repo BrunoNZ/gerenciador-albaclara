@@ -5,7 +5,7 @@ class ClientMailer < ApplicationMailer
     @schedules = @client.find_active_schedules
 
     unless @schedules.nil? then
-      mail(to: contacts_of(@client), subject: 'Welcome to My Awesome Site')
+      mail(to: contacts_of(@client), subject: 'ALBACLARA - Agenda consolidada')
     end
   end
 

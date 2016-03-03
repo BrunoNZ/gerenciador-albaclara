@@ -9,24 +9,30 @@
   </style>
 
   <body>
-    <h1>Agendamentos ativos para <%= @client.name %></h1>
+    (Mensagem automática)
+    <h3>ALBACLARA - Agenda consolidada para <%= @client.name %></h3>
+
+    <!-- <%= image_tag("logo.jpg") %> -->
 
     <table border="1" cellpadding="10" cellspacing="0">
       <thead>
         <tr class="tableheader">
-          <th>Name</th>
-          <th>Contact name</th>
-          <th>Contact phone</th>
-          <th>Contact date</th>
-          <th>Visit datetime</th>
-          <th>Address</th>
-          <th>Observation</th>
+          <th></th>
+          <th>Nome da empresa</th>
+          <th>Nome do contato</th>
+          <th>Telefone do contato</th>
+          <th>Data do contato</th>
+          <th>Data da Visita</th>
+          <th>Endereço</th>
+          <th>Observações</th>
         </tr>
       </thead>
 
       <tbody>
+        <% x = 1 %>
         <% @schedules.each do |schedule| %>
           <tr>
+            <td><%= x %></td>
             <td><%= schedule.name %></td>
             <td><%= schedule.contact_name %></td>
             <td><%= schedule.contact_phone %></td>
@@ -35,6 +41,7 @@
             <td><%= schedule.address %></td>
             <td><%= schedule.observation %></td>
           </tr>
+          <% x = 1 %>
         <% end %>
       </tbody>
     </table>
