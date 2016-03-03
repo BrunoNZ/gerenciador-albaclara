@@ -3,9 +3,9 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
+    <%= f.input :address %>
     <%= f.input :billing_date %>
     <%= f.input :contract_start_date %>
-    <%= f.input :address %>
   </div>
 
   <h3>Contatos</h3>
@@ -14,8 +14,12 @@
   <% end %>
 
   <div class="form-actions">
+    <p>
     <%= link_to_add_association 'Adicionar contato', f, :contacts,
-      :class => "btn btn-default", :render_options => {:display => 'inline' } %>
-    <%= f.button :submit %>
+      :class => "btn btn-primary", :render_options => {:display => 'inline' } %>
+    </p>
+    <p>
+    <%= f.button :submit, :class => "btn btn-success" %>
+  </p>
   </div>
 <% end %>

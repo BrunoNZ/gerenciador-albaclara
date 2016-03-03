@@ -1,6 +1,8 @@
-<div class="nested-fields">
-  <%= f.input :name %>
-  <%= f.input :email %>
-  <%= f.input :phone %>
-  <%= link_to_remove_association "remove item", f, :class => "btn btn-danger" %>
+<div class="nested-fields inline-form">
+  <%= f.input :name, :label=>false, :placeholder=>"Nome do contato" %>
+  <%= f.input :email, :label=>false, :placeholder=>"Email do contato" %>
+  <%= f.input :phone, :label=>false, :placeholder=>"Telefone do contato"  %>
+  <%= link_to_remove_association f, :class => "btn btn-danger" do %>
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  <% end %>
 </div>
