@@ -1,18 +1,30 @@
-<ul class="list-inline">
-  <li>
-    <%= button_to schedule_path(schedule, "schedule[status]" => 1),
-      method: :put,
-      data: { confirm: 'Tem certeza que deseja CONFIRMAR esse agendamento?' },
-      class: "btn btn-success" do %>
-      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-    <% end %>
-  </li>
-  <li>
-    <%= button_to schedule_path(schedule, "schedule[status]" => 2),
-      method: :put,
-      data: { confirm: 'Tem certeza que deseja DESCONFIRMAR esse agendamento?' },
-      class: "btn btn-danger" do %>
-      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-    <% end %>
-  </li>
-<ul>
+<% if schedule.status.equal? 0 %>
+
+  <ul class="list-inline">
+    <li>
+      <%= button_to schedule_path(schedule, "schedule[status]" => 1),
+        method: :put,
+        data: { confirm: 'Tem certeza que deseja CONFIRMAR esse agendamento?' },
+        class: "btn btn-success" do %>
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+      <% end %>
+    </li>
+    <li>
+      <%= button_to schedule_path(schedule, "schedule[status]" => 2),
+        method: :put,
+        data: { confirm: 'Tem certeza que deseja DESCONFIRMAR esse agendamento?' },
+        class: "btn btn-danger" do %>
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      <% end %>
+    </li>
+  <ul>
+
+<% else %>
+
+  <ul class="list-inline">
+    <li>
+      <span class="<%= schedule_status_btnclasses(schedule) %>" aria-hidden="true"></span>
+    </li>
+  </ul>
+
+<% end %>

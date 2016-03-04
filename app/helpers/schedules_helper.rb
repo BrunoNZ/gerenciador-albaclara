@@ -3,6 +3,14 @@ module SchedulesHelper
     (0..2).map { |s| [status_name(s), s] }
   end
 
+  def schedule_status_btnclasses(schedule)
+    if schedule.status.equal? 1
+      return 'glyphicon glyphicon-ok btn btn-success disabled'
+    else
+      return 'glyphicon glyphicon-remove btn btn-danger disabled'
+    end
+  end
+
   private
 
   def status_name(status)
