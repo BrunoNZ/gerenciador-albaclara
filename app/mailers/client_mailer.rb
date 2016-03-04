@@ -23,10 +23,20 @@ class ClientMailer < ApplicationMailer
   def update_schedule_status(schedule)
     @schedule = schedule
     @client = @schedule.client
-    # unless @schedule.nil? then
-    #   mail(to: contacts_of(@client),
-    #     subject: 'ALBACLARA - Novo agendamento')
-    # end
+
+    if @schedule.status.equal? 1 then
+      template_name = 'confirm_schedule_status'
+      subject = 'ALBACLARA - Agendamento confirmado'
+    else
+      template = 'unconfirm_schedule_status'
+      subject = 'ALBACLARA - Agendamento desmarcado'
+    end
+
+    unless @schedule.nil? then
+      mail(to: contacts_of(@client),
+        subject: 'ALBACLARA - Novo agendamento',
+        template_name: template)
+    end
   end
 
   def update_productivity(client)

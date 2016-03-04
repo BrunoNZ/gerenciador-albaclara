@@ -8,6 +8,10 @@ class ClientMailerPreview < ActionMailer::Preview
     ClientMailer.new_schedule(Schedule.last)
   end
 
+  def update_schedule_status
+    ClientMailer.update_schedule_status(Schedule.first)
+  end
+
   def update_productivity
     ClientMailer.update_productivity(Client.first)
   end
