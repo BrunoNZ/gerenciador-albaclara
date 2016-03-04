@@ -3,4 +3,5 @@ class Schedule < ActiveRecord::Base
 
   validates :client, presence: true
   validates_inclusion_of :status, :in => 0..2
+
 end

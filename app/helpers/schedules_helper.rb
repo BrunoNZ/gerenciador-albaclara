@@ -1,6 +1,6 @@
 module SchedulesHelper
   def status_options
-    (0..2).map { |s| [status_name(s), s] }
+    (0..2).map { |s| [status_name?(s), s] }
   end
 
   def schedule_status_btnclasses(schedule)
@@ -11,18 +11,21 @@ module SchedulesHelper
     end
   end
 
-  private
+  def status_name(schedule)
+    return status_name?(schedule.status)
+  end
 
-  def status_name(status)
+  def status_name?(status)
     case status
       when 0
-        ''
+        return ''
       when 1
-        'Confirmado'
+        return 'Confirmado'
       when 2
-        'Desconfirmado'
+        return 'Desconfirmado'
       else
-        'ERRO'
+        return 'ERRO'
     end
   end
+
 end
