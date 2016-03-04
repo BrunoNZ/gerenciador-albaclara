@@ -10,7 +10,7 @@
 
   <body>
     (Mensagem automática)
-    <h3>ALBACLARA - Agenda consolidada para <%= @client.name %></h3>
+    <h3>ALBACLARA - Novo agendamento para <%= @client.name %></h3>
 
     <!-- <%= image_tag("logo.jpg") %> -->
 
@@ -29,21 +29,18 @@
       </thead>
 
       <tbody>
-        <% @schedules.each do |schedule| %>
-          <tr>
-            <td><%= table_line_number %></td>
-            <td><%= schedule.name %></td>
-            <td><%= schedule.contact_name %></td>
-            <td><%= schedule.contact_phone %></td>
-            <td><%= schedule.contact_date %></td>
-            <td><%= schedule.visit_datetime %></td>
-            <td><%= schedule.address %></td>
-            <td><%= schedule.observation %></td>
-          </tr>
-        <% end %>
+        <tr>
+          <td><%= table_line_number %></td>
+          <td><%= @schedule.name %></td>
+          <td><%= @schedule.contact_name %></td>
+          <td><%= @schedule.contact_phone %></td>
+          <td><%= @schedule.contact_date %></td>
+          <td><%= @schedule.visit_datetime %></td>
+          <td><%= @schedule.address %></td>
+          <td><%= @schedule.observation %></td>
+        </tr>
       </tbody>
     </table>
-
 
   </body>
 </html>

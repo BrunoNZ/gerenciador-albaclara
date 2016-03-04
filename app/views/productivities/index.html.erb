@@ -36,23 +36,7 @@
         <td><%= productivity.interlocutor_qty %></td>
         <td><%= productivity.schedule_qty %></td>
         <td class="action-btns">
-          <ul class="list-inline">
-            <li>
-              <%= button_to productivity, method: :get, class: "btn btn-default" do %>
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-              <% end %>
-            </li>
-            <li>
-              <%= button_to edit_productivity_path(productivity), method: :get, class: "btn btn-primary" do %>
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              <% end %>
-            </li>
-            <li>
-              <%= button_to productivity, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              <% end %>
-            </li>
-          </ul>
+          <%= render partial: "action_btns", object: productivity, as: 'productivity' %>
         </td>
       </tr>
     <% end %>

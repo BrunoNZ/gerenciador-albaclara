@@ -30,6 +30,7 @@ class SchedulesController < ApplicationController
       if @schedule.save
         format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
         format.json { render :show, status: :created, location: @schedule }
+        ClientMailer.new_schedule(@schedule).deliver_now
       else
         format.html { render :new }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
@@ -40,10 +41,12 @@ class SchedulesController < ApplicationController
   # PATCH/PUT /schedules/1
   # PATCH/PUT /schedules/1.json
   def update
+    status_changed = detect_status_changed(@schedule, schedule_params)
     respond_to do |format|
       if @schedule.update(schedule_params)
         format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @schedule }
+        ClientMailer.update_schedule_status(@schedule).deliver_now if status_changed
       else
         format.html { render :edit }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
@@ -62,6 +65,12 @@ class SchedulesController < ApplicationController
   end
 
   private
+    def detect_status_changed(schedule,params)
+      return false if !params.include? "status"
+      return false if schedule.status.equal? params["status"]
+      return true
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
       @schedule = Schedule.find(params[:id])

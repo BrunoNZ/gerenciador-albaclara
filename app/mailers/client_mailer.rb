@@ -5,8 +5,28 @@ class ClientMailer < ApplicationMailer
     @schedules = @client.find_active_schedules
 
     unless @schedules.nil? then
-      mail(to: contacts_of(@client), subject: 'ALBACLARA - Agenda consolidada')
+      mail(to: contacts_of(@client),
+        subject: 'ALBACLARA - Agenda consolidada')
     end
+  end
+
+  def new_schedule(schedule)
+    @schedule = schedule
+    @client = @schedule.client
+
+    unless @schedule.nil? then
+      mail(to: contacts_of(@client),
+        subject: 'ALBACLARA - Novo agendamento')
+    end
+  end
+
+  def update_schedule_status(schedule)
+    @schedule = schedule
+    @client = @schedule.client
+    # unless @schedule.nil? then
+    #   mail(to: contacts_of(@client),
+    #     subject: 'ALBACLARA - Novo agendamento')
+    # end
   end
 
   def update_productivity(client)
@@ -14,7 +34,8 @@ class ClientMailer < ApplicationMailer
     @productivity = @client.find_last_productivity
 
     unless @productivity.nil? then
-      mail(to: contacts_of(@client), subject: 'Welcome to My Awesome Site')
+      mail(to: contacts_of(@client),
+        subject: 'ALBACLARA - Atualização da produtividade')
     end
   end
 

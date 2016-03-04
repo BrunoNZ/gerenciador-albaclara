@@ -30,23 +30,7 @@
         <td><%= client.contract_start_date %></td>
         <td><%= client.address %></td>
         <td class="action-btns">
-          <ul class="list-inline">
-            <li>
-              <%= button_to client, method: :get, class: "btn btn-default" do %>
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-              <% end %>
-            </li>
-            <li>
-              <%= button_to edit_client_path(client), method: :get, class: "btn btn-primary" do %>
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              <% end %>
-            </li>
-            <li>
-              <%= button_to client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              <% end %>
-            </li>
-          </ul>
+          <%= render partial: "action_btns", object: client, as: 'client' %>
         </td>
       </tr>
     <% end %>
