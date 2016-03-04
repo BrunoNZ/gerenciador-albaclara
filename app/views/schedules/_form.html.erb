@@ -10,7 +10,7 @@
     <%= f.input :visit_datetime %>
     <%= f.input :address %>
     <%= f.input :observation %>
-    <!-- <%= f.input :status %> -->
+    <%= f.input :status, collection: status_options, selected: @schedule.status %>
   </div>
 
   <div class="form-actions">
