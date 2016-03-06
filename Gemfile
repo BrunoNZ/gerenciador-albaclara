@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby '2.3.0'
 gem 'rails', '4.2.5.1'
 gem 'sqlite3'
 #gem 'pg'
@@ -31,4 +31,4 @@ gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'whenever'
 gem 'cocoon'
-gem 'premailer', '~> 1.8', '>= 1.8.6'
+gem 'premailer'
