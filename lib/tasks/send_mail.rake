@@ -9,7 +9,7 @@ namespace :send_mail do
 
     Client.find_each do |client|
       puts "[exec] SchedulesMailer.active_schedules(#{client})"
-      ClientMailer.active_schedules(client).deliver_now
+      ClientMailer.active_schedules(client).deliver_later
     end
 
     log.close
@@ -23,7 +23,7 @@ namespace :send_mail do
 
     Client.find_each do |client|
       puts "[exec] SchedulesMailer.update_productivity(#{client})"
-      ClientMailer.update_productivity(client).deliver_now
+      ClientMailer.update_productivity(client).deliver_later
     end
 
     log.close
