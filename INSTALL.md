@@ -15,12 +15,12 @@ $ sudo apt-get install -y nodejs && sudo ln -sf /usr/bin/nodejs /usr/local/bin/n
 
 Usuário
 -------
-1. Criar um usuário para armazenar o sistema:
+Criar um usuário para armazenar o sistema:
 ```bash
 $ sudo adduser gerenciador
 $ sudo adduser gerenciador sudo
 ```
-2. Logar no usuário
+Logar no usuário
 ```bash
 $ sudo su - gerenciador
 ```
@@ -47,21 +47,55 @@ $ passenger-install-apache2-module
 $ rvmsudo passenger-config validate-install
 ```
 
+PostgreSQL
+----------
+Criar um novo usuário:
+```bash
+$ sudo su - postgres
+$ psql -c "CREATE USER <DATABASE_USER> WITH ENCRYPTED PASSWORD '<DATABASE_PASSWORD>'"
+```
+
 Git
 ---
-1. Criar uma chave SSH:
+Criar uma chave SSH:
 ```bash
 # Usar o caminho padrao e deixar a senha em branco
 $ ssh-keygen -t rsa -C "gerenciador@albaclara"
 ```
-2. Adicionar a chave pública SSH às DeployKeys do projeto
+Adicionar a chave pública SSH às DeployKeys do projeto
 
-3. Configurar o usuário Git:
+Configurar o usuário Git:
 ```bash
 $ git config --global user.name "gerenciador@albaclara"
 $ git config --global user.email "gerenciador@albaclara"
 ```
-4. Clonar o repositório:
+Clonar o repositório:
 ```bash
 $ git clone
+```
+
+Deploy
+------
+Criar uma secret-key:
+```bash
+$ rake secret
+```
+
+Adicionar ao arquivo "~/.bashrc":
+```bash
+export RAILS_ENV="production"
+export SECRET_KEY_BASE="<SECRET_KEY>"
+
+export ADMIN_EMAIL="admin@admin.com"
+export ADMIN_PASSWORD="password"
+
+export EMAIL_PROVIDER_USERNAME="email@provider.com"
+export EMAIL_PROVIDER_PASSWORD="password"
+
+export ADMIN_EMAIL="production"
+```
+
+Instalar gemas:
+```bash
+$ bundle install
 ```
