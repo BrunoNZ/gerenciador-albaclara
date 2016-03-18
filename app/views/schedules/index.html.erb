@@ -6,47 +6,28 @@
   <span class="glyphicon glyphicon-plus" aria-hidden="true">Novo</span>
 <% end %>
 
-<table id="table"
+<table id="schedules"
   class="table table-hover"
+  data-url="<%= schedules_url(format: "json") %>"
   data-toggle="table"
   data-id-table="advancedTable"
   data-search="true"
-  data-pagination="true">
+  data-pagination="true"
+  >
   <thead>
     <tr>
-      <th>Cliente</th>
-      <th>Nome da empresa</th>
-      <th>Nome do contato</th>
-      <th>Telefone do contato</th>
-      <th>Data do contato</th>
-      <th>Data da Visita</th>
-      <th>Endereço</th>
-      <th>Observações</th>
-      <th>Status</th>
+      <th data-field="client.name" data-sortable="true">Cliente</th>
+      <th data-field="name" data-sortable="true">Nome da empresa</th>
+      <th data-field="contact_name" data-sortable="true">Nome do contato</th>
+      <th data-field="contact_phone" data-sortable="true">Telefone do contato</th>
+      <th data-field="contact_datetime" data-sortable="true">Data do contato</th>
+      <th data-field="visit_datetime" data-sortable="true">Data da Visita</th>
+      <th data-field="address" data-sortable="true">Endereço</th>
+      <th data-field="observation" data-sortable="true">Observações</th>
+      <th data-field="status" data-sortable="true">Status</th>
       <th></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @schedules.each do |schedule| %>
-      <tr>
-        <td><%= link_to schedule.client.name, client_path(schedule.client) %></td>
-        <td><%= schedule.name %></td>
-        <td><%= schedule.contact_name %></td>
-        <td><%= schedule.contact_phone %></td>
-        <td><%= schedule.contact_date %></td>
-        <td><%= schedule.visit_datetime %></td>
-        <td><%= schedule.address %></td>
-        <td class="col-md-2"><%= schedule.observation %></td>
-        <td class="status-btns">
-          <%= render partial: "update_status", object: schedule, as: "schedule" %>
-        </td>
-        <td class="action-btns">
-          <%= render partial: "action_btns", object: schedule, as: "schedule" %>
-        </td>
-      </tr>
-    <% end %>
   </tbody>
 </table>
-
-<p>

@@ -12,16 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require turbolinks
 //= require cocoon
-//= require bootstrap-sprockets
 //= require bootstrap-table
 //= require bootstrap-table-pt-BR
+//= require bootstrap-sprockets
 //= require_tree .
-
-// Clickable table lines
-jQuery(function($) {
-$("tr[data-link]").click(function() {
-window.location = this.dataset.link
-});
-})
