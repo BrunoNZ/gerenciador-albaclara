@@ -1,0 +1,5 @@
+<% if schedule.status.equal? 0 %>
+
+  <%= select "schedule", "status", status_options, {include_blank: true} %>
+
+<% end %>

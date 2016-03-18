@@ -24,6 +24,7 @@
       <th data-field="address" data-sortable="true">Endereço</th>
       <th data-field="observation" data-sortable="true">Observações</th>
       <th data-field="status" data-sortable="true">Status</th>
+      <th data-field="confirmation_status" data-sortable="true">Confirmação</th>
       <th></th>
     </tr>
   </thead>
@@ -40,6 +41,9 @@
         <td class="col-md-2"><%= schedule.observation %></td>
         <td class="status-btns">
           <%= render partial: "update_status", object: schedule, as: "schedule" %>
+        </td>
+        <td class="status-btns">
+          <%= render partial: "update_confirmation_status", object: schedule, as: "schedule" %>
         </td>
         <td class="action-btns">
           <%= render partial: "action_btns", object: schedule, as: "schedule" %>
