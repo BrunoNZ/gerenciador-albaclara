@@ -8,16 +8,14 @@
 
 <table id="table"
   class="table table-hover"
-  data-url="<%= schedules_url(format: "json") %>"
   data-toggle="table"
   data-search="true"
   data-pagination="true"
   data-show-columns="true"
-  data-show-refresh="true"
-  >
+  data-show-refresh="true">
   <thead>
     <tr>
-      <th data-field="client.name" data-sortable="true">Cliente</th>
+      <th data-field="client_name" data-sortable="true">Cliente</th>
       <th data-field="name" data-sortable="true">Nome da empresa</th>
       <th data-field="contact_name" data-sortable="true">Nome do contato</th>
       <th data-field="contact_phone" data-sortable="true">Telefone do contato</th>
@@ -29,4 +27,24 @@
       <th></th>
     </tr>
   </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= link_to schedule.client.name, client_path(schedule.client) %></td>
+        <td><%= schedule.name %></td>
+        <td><%= schedule.contact_name %></td>
+        <td><%= schedule.contact_phone %></td>
+        <td><%= schedule.contact_date %></td>
+        <td><%= schedule.visit_datetime %></td>
+        <td><%= schedule.address %></td>
+        <td class="col-md-2"><%= schedule.observation %></td>
+        <td class="status-btns">
+          <%= render partial: "update_status", object: schedule, as: "schedule" %>
+        </td>
+        <td class="action-btns">
+          <%= render partial: "action_btns", object: schedule, as: "schedule" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
