@@ -38,13 +38,28 @@ $ if sudo grep -q secure_path /etc/sudoers; then sudo sh -c "echo export rvmsudo
 ```
 
 Passenger + Apache2
------------------
+-------------------
 Seguir os passos do: [Tutorial Oficial](https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/apache/oss/install_language_runtime.html)
 
 ```bash
 $ gem install passenger
 $ passenger-install-apache2-module
 $ rvmsudo passenger-config validate-install
+```
+
+Sidekiq
+-------
+Adicione o Sidekiq ao Systemclt:
+```bash
+$ wget https://raw.githubusercontent.com/mperham/sidekiq/master/examples/systemd/sidekiq.service
+$ sudo cp sidekiq.servicesidekiq.service /lib/systemd/system
+$ sudo systemctl enable sidekiq
+```
+
+Adicione o Sidekiq ao Upstart:
+```bash
+$ wget https://raw.githubusercontent.com/mperham/sidekiq/master/examples/upstart/sidekiq.conf
+$ wget
 ```
 
 PostgreSQL
