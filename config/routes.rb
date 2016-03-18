@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :productivities
   resources :schedules
   resources :clients
-  resources :users
+  # resources :users
 
   namespace 'report' do
     get 'schedules' => 'schedules#index'
