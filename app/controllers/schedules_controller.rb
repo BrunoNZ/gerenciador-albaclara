@@ -43,7 +43,7 @@ class SchedulesController < ApplicationController
   # PATCH/PUT /schedules/1
   # PATCH/PUT /schedules/1.json
   def update
-    status_changed = detect_status_changed(@schedule, schedule_params)
+    status_changed = detect_confirmation_status_changed(@schedule, schedule_params)
     respond_to do |format|
       if @schedule.update(schedule_params)
         format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
@@ -70,6 +70,12 @@ class SchedulesController < ApplicationController
     def detect_status_changed(schedule,params)
       return false if !params.include? "status"
       return false if schedule.status.equal? params["status"]
+      return true
+    end
+
+    def detect_confirmation_status_changed(schedule,params)
+      return false if !params.include? "confirmation_status"
+      return false if schedule.confirmation_status.equal? params["confirmation_status"]
       return true
     end
 
