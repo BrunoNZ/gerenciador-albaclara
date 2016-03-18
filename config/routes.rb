@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :users
 
   namespace 'report' do
-    get 'schedules' => 'report/schedules#index'
-    get 'schedules/:id' => 'report/schedules#show'
+    get 'schedules' => 'schedules#index'
+    get 'schedules/:id' => 'schedules#show'
   end
 
   devise_for :users, :controllers => {:registrations => "registrations"}
