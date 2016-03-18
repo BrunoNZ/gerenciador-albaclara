@@ -9,18 +9,19 @@
 <table id="table"
   class="table table-hover"
   data-toggle="table"
-  data-id-table="advancedTable"
   data-search="true"
-  data-pagination="true">
+  data-pagination="true"
+  data-show-columns="true"
+  data-show-refresh="true">
   <thead>
     <tr>
-      <th>Cliente</th>
-      <th>Início da análise</th>
-      <th>Fim da análise</th>
-      <th>Ligações</th>
-      <th>Ligações respondidas</th>
-      <th>Interlocutores</th>
-      <th>Agendamentos</th>
+      <th data-field="client" data-sortable="true">Cliente</th>
+      <th data-field="analysis_start_date" data-sortable="true">Início da análise</th>
+      <th data-field="analysis_end_date" data-sortable="true">Fim da análise</th>
+      <th data-field="call_qty" data-sortable="true">Ligações</th>
+      <th data-field="answered_call_qty" data-sortable="true">Ligações respondidas</th>
+      <th data-field="interlocutor_qty" data-sortable="true">Interlocutores</th>
+      <th data-field="schedule_qty" data-sortable="true">Agendamentos</th>
       <th></th>
     </tr>
   </thead>
