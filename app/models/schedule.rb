@@ -19,4 +19,11 @@ class Schedule < ActiveRecord::Base
     ]
   end
 
+  def self.get_valid_confirmation_status
+    @valid_confirmation_status ||= [
+      {val: 1, desc: 'Confirmado'},
+      {val: 2, desc: 'Desconfirmado'}
+    ]
+  end
+
 end
