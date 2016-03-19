@@ -1,25 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Report Schedules</h1>
+<h1>Status</h1>
 
-<table>
+<table id="table"
+  class="table table-hover"
+  data-toggle="table"
+  data-search="true"
+  data-url=""
+  data-pagination="true"
+  data-show-columns="true"
+  data-show-refresh="true">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th></th>
+      <% @months.each do |m| %>
+        <th data-sortable="true"><%= m %></th>
+      <% end %>
+      <!-- <th data-field="client_name" data-sortable="true">Total</th> -->
     </tr>
   </thead>
-
   <tbody>
-    <% @report_schedules.each do |report_schedule| %>
+    <% @clients.each do |c| %>
       <tr>
-        <td><%= link_to 'Show', report_schedule %></td>
-        <td><%= link_to 'Edit', edit_report_schedule_path(report_schedule) %></td>
-        <td><%= link_to 'Destroy', report_schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= c.name %></td>
+        <% (1..5).each do |s| %>
+        <tr>
+          <td></td>
+          <% @months.each do |m| %>
+            <td><%= get_schedules_count(@schedules[m],c.id,s) %></td>
+          <% end %>
+        </tr>
+        <% end %>
+        <!-- <td>1</td> -->
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Schedule', new_report_schedule_path %>

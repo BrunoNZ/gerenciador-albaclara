@@ -6,7 +6,12 @@ class Report::SchedulesController < ApplicationController
   # GET /report/schedules
   # GET /report/schedules.json
   def index
-    @schedules = Schedule.all
+    @clients = Client.all
+
+    schedules = Schedule.all
+    @schedules = schedules.group_by {|s| s.visit_datetime.strftime("%Y%m")}
+    @months = schedules.map{|s| s.visit_datetime.strftime("%Y%m")}.uniq!.sort!.take(12)
+
   end
 
   # GET /report/schedules/1
