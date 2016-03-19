@@ -6,7 +6,7 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.all
+    @schedules = Schedule.all.includes(:client)
   end
 
   # GET /schedules/1

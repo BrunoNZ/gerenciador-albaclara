@@ -14,7 +14,7 @@ class Report::SchedulesController < ApplicationController
         hash[key] = Array.new
       }
     }
-    Schedule.all.each do |s|
+    Schedule.find_each do |s|
       @schedules_per_client[s.client_id][s.get_visit_date] << s
       @dates << s.get_visit_date
     end
