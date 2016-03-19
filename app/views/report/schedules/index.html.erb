@@ -14,27 +14,33 @@
     <tr>
       <th></th>
       <% @dates.each do |d| %>
-        <th data-sortable="false"><%= get_date_name(d) %></th>
+        <th data-sortable="true"><%= get_date_name(d) %></th>
       <% end %>
-      <!-- <th data-field="client_name" data-sortable="true">Total</th> -->
     </tr>
   </thead>
   <tbody>
     <% @clients.each do |c| %>
       <tr class="total_line">
-        <td><%= c.name %></td>
+        <td>
+          <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal<%= c.id %>">
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          </button>
+          <%= c.name %>
+        </td>
         <% @dates.each do |d| %>
           <td><%= get_schedules_count(@schedules_per_client[c.id][d]) %></td>
-        <% end %>
-        <% Schedule.get_valid_status.each do |s| %>
-        <tr>
-          <td class="status_desc"><%= s[:desc] %></td>
-          <% @dates.each do |d| %>
-            <td><%= get_schedules_count_per_status(@schedules_per_client[c.id][d],s[:val]) %></td>
-          <% end %>
-        </tr>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<% @clients.each do |c| %>
+  <%= render partial: "report/schedules/detailed_status",
+    locals: {
+      client: c,
+      schedule: @schedules_per_client,
+      dates: @dates
+    }
+  %>
+<% end %>
