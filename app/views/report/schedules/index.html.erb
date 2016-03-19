@@ -6,15 +6,15 @@
   class="table table-hover"
   data-toggle="table"
   data-search="true"
-  data-url=""
-  data-pagination="true"
+  data-pagination="false"
   data-show-columns="true"
-  data-show-refresh="true">
+  data-show-refresh="true"
+  >
   <thead>
     <tr>
       <th></th>
       <% @dates.each do |d| %>
-        <th data-sortable="true"><%= get_date_name(d) %></th>
+        <th data-sortable="false"><%= get_date_name(d) %></th>
       <% end %>
       <!-- <th data-field="client_name" data-sortable="true">Total</th> -->
     </tr>
