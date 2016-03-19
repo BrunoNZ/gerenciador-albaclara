@@ -4,13 +4,22 @@ class Report::SchedulesController < ApplicationController
   before_action :set_report_schedule, only: [:show]
 
   # GET /report/schedules
-  # GET /report/schedules.json
   def index
     @clients = Client.all
+    @dates = Array.new
 
-    schedules = Schedule.all
-    @schedules = schedules.group_by {|s| s.visit_datetime.strftime("%Y%m")}
-    @months = schedules.map{|s| s.visit_datetime.strftime("%Y%m")}.uniq!.sort!.take(12)
+    # @schedules_per_client[][] = Array.new
+    @schedules_per_client = Hash.new{|hash, key|
+      hash[key] = Hash.new{|hash, key|
+        hash[key] = Array.new
+      }
+    }
+    Schedule.all.each do |s|
+      @schedules_per_client[s.client_id][s.get_visit_date] << s
+      @dates << s.get_visit_date
+    end
+
+    @dates.uniq!.sort!.take(12)
 
   end
 
