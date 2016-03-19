@@ -13,21 +13,24 @@
   <thead>
     <tr>
       <th></th>
-      <% @months.each do |m| %>
-        <th data-sortable="true"><%= m %></th>
+      <% @dates.each do |d| %>
+        <th data-sortable="true"><%= get_date_name(d) %></th>
       <% end %>
       <!-- <th data-field="client_name" data-sortable="true">Total</th> -->
     </tr>
   </thead>
   <tbody>
     <% @clients.each do |c| %>
-      <tr>
+      <tr class="total_line">
         <td><%= c.name %></td>
-        <% (1..5).each do |s| %>
+        <% @dates.each do |d| %>
+          <td><%= get_schedules_count(@schedules_per_client[c.id][d]) %></td>
+        <% end %>
+        <% Schedule.get_valid_status.each do |s| %>
         <tr>
-          <td></td>
-          <% @months.each do |m| %>
-            <td><%= get_schedules_count(@schedules[m],c.id,s) %></td>
+          <td class="status_desc"><%= s[:desc] %></td>
+          <% @dates.each do |d| %>
+            <td><%= get_schedules_count_per_status(@schedules_per_client[c.id][d],s[:val]) %></td>
           <% end %>
         </tr>
         <% end %>
