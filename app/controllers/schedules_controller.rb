@@ -67,7 +67,7 @@ class SchedulesController < ApplicationController
   def destroy
     @schedule.destroy
     respond_to do |format|
-      format.html { redirect_to schedules_url, notice: 'O agendamento foi removido com sucesso.' }
+      format.html { redirect_to client_schedules_path(@client), notice: 'O agendamento foi removido com sucesso.' }
       format.json { head :no_content }
     end
   end
