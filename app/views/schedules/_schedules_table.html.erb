@@ -7,7 +7,6 @@
   data-show-refresh="true">
   <thead>
     <tr>
-      <th data-field="client_name" data-sortable="true">Cliente</th>
       <th data-field="name" data-sortable="true">Nome da empresa</th>
       <th data-field="contact_name" data-sortable="true">Nome do contato</th>
       <th data-field="contact_phone" data-sortable="true">Telefone do contato</th>
@@ -23,7 +22,6 @@
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%= link_to schedule.client.name, client_path(schedule.client) %></td>
         <td><%= schedule.name %></td>
         <td><%= schedule.contact_name %></td>
         <td><%= schedule.contact_phone %></td>
@@ -51,7 +49,7 @@
 
             <ul class="list-inline">
               <li>
-                <%= button_to schedule_path(client_schedule(@client), "schedule[confirmation_status]" => 1),
+                <%= button_to client_schedule_path(@client,schedule), "schedule[confirmation_status]" => 1,
                   method: :put,
                   data: { confirm: 'Tem certeza que deseja CONFIRMAR esse agendamento?' },
                   class: "btn btn-success" do %>
@@ -59,7 +57,7 @@
                 <% end %>
               </li>
               <li>
-                <%= button_to schedule_path(client_schedule(@client), "schedule[confirmation_status]" => 2),
+                <%= button_to client_schedule_path(@client,schedule), "schedule[confirmation_status]" => 2,
                   method: :put,
                   data: { confirm: 'Tem certeza que deseja DESCONFIRMAR esse agendamento?' },
                   class: "btn btn-danger" do %>
