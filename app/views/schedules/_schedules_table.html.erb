@@ -1,0 +1,112 @@
+<table id="table"
+  class="table table-hover"
+  data-toggle="table"
+  data-search="true"
+  data-pagination="true"
+  data-show-columns="true"
+  data-show-refresh="true">
+  <thead>
+    <tr>
+      <th data-field="client_name" data-sortable="true">Cliente</th>
+      <th data-field="name" data-sortable="true">Nome da empresa</th>
+      <th data-field="contact_name" data-sortable="true">Nome do contato</th>
+      <th data-field="contact_phone" data-sortable="true">Telefone do contato</th>
+      <th data-field="contact_datetime" data-sortable="true">Data do contato</th>
+      <th data-field="visit_datetime" data-sortable="true">Data da Visita</th>
+      <th data-field="address" data-sortable="true">Endereço</th>
+      <th data-field="observation" data-sortable="true">Observações</th>
+      <th data-field="status" data-sortable="true">Status</th>
+      <th data-field="confirmation_status" data-sortable="true">Confirmação</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= link_to schedule.client.name, client_path(schedule.client) %></td>
+        <td><%= schedule.name %></td>
+        <td><%= schedule.contact_name %></td>
+        <td><%= schedule.contact_phone %></td>
+        <td><%= schedule.contact_date %></td>
+        <td><%= schedule.visit_datetime %></td>
+        <td><%= schedule.address %></td>
+        <td class="col-md-2"><%= schedule.observation %></td>
+        <td class="status-btns">
+
+          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+          <!-- UPDATE_STATUS -->
+          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+          <% if schedule.status.equal? 0 %>
+            <%= select "schedule", "status", status_options, {include_blank: true} %>
+          <% end %>
+          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+        </td>
+        <td class="status-btns">
+
+          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+          <!-- UPDATE_CONFIRMATION_STATUS -->
+          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+          <% if schedule.confirmation_status.equal? 0 %>
+
+            <ul class="list-inline">
+              <li>
+                <%= button_to schedule_path(client_schedule(@client), "schedule[confirmation_status]" => 1),
+                  method: :put,
+                  data: { confirm: 'Tem certeza que deseja CONFIRMAR esse agendamento?' },
+                  class: "btn btn-success" do %>
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <% end %>
+              </li>
+              <li>
+                <%= button_to schedule_path(client_schedule(@client), "schedule[confirmation_status]" => 2),
+                  method: :put,
+                  data: { confirm: 'Tem certeza que deseja DESCONFIRMAR esse agendamento?' },
+                  class: "btn btn-danger" do %>
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <% end %>
+              </li>
+            <ul>
+
+          <% else %>
+
+            <ul class="list-inline">
+              <li>
+                <span class="<%= schedule_confirmation_status_btnclasses(schedule) %>"
+                  aria-hidden="true"></span>
+              </li>
+            </ul>
+
+          <% end %>
+          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+        </td>
+        <td class="action-btns">
+
+          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+          <!-- ACTION BUTTONS -->
+          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+          <ul class="list-inline">
+            <li>
+              <%= button_to client_schedule_path(@client,schedule), method: :get, class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <% end %>
+            </li>
+            <li>
+              <%= button_to edit_client_schedule_path(@client,schedule), method: :get, class: "btn btn-primary" do %>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <% end %>
+            </li>
+            <li>
+              <%= button_to client_schedule_path(@client,schedule), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <% end %>
+            </li>
+          </ul>
+          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
