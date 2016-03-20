@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   resources :productivities
-  resources :schedules
-  resources :clients
+  resources :clients do
+    resources :schedules
+  end
+  get 'schedules' => 'schedules#empty_index'
   # resources :users
 
   namespace 'report' do

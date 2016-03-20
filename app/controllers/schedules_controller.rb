@@ -1,38 +1,44 @@
 class SchedulesController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :load_client, except: [:empty_index]
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
   # GET /schedules
-  # GET /schedules.json
-  def index
-    @schedules = Schedule.all.includes(:client)
+  def empty_index
+    render 'index'
   end
 
-  # GET /schedules/1
-  # GET /schedules/1.json
+  # GET /clients/1/schedules
+  # GET /clients/1/schedules.json
+  def index
+    @schedules = @client.schedules
+  end
+
+  # GET /clients/1/schedules/1
+  # GET /clients/1/schedules/1.json
   def show
   end
 
-  # GET /schedules/new
+  # GET /clients/1/schedules/new
   def new
-    @schedule = Schedule.new
+    @schedule = @client.schedules.new
   end
 
-  # GET /schedules/1/edit
+  # GET /clients/1/schedules/1/edit
   def edit
   end
 
-  # POST /schedules
-  # POST /schedules.json
+  # POST /clients/1/schedules
+  # POST /clients/1/schedules.json
   def create
-    @schedule = Schedule.new(schedule_params)
+    @schedule = @client.schedules.new(schedule_params)
 
     respond_to do |format|
       if @schedule.save
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
+        format.html { redirect_to [@client,@schedule], notice: 'Schedule was successfully created.' }
         format.json { render :show, status: :created, location: @schedule }
-        ClientMailer.new_schedule(@schedule).deliver_later
+        # ClientMailer.new_schedule(@schedule).deliver_later
       else
         format.html { render :new }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
@@ -40,15 +46,15 @@ class SchedulesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /schedules/1
-  # PATCH/PUT /schedules/1.json
+  # PATCH/PUT /clients/1/schedules/1
+  # PATCH/PUT /clients/1/schedules/1.json
   def update
     status_changed = detect_confirmation_status_changed(@schedule, schedule_params)
     respond_to do |format|
-      if @schedule.update(schedule_params)
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
+      if @client.schedule.update(schedule_params)
+        format.html { redirect_to [@parent,@schedule], notice: 'Schedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @schedule }
-        ClientMailer.update_schedule_status(@schedule).deliver_later if status_changed
+        # ClientMailer.update_schedule_status(@schedule).deliver_later if status_changed
       else
         format.html { render :edit }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
@@ -56,8 +62,8 @@ class SchedulesController < ApplicationController
     end
   end
 
-  # DELETE /schedules/1
-  # DELETE /schedules/1.json
+  # DELETE /clients/1/schedules/1
+  # DELETE /clients/1/schedules/1.json
   def destroy
     @schedule.destroy
     respond_to do |format|
@@ -79,9 +85,13 @@ class SchedulesController < ApplicationController
       return true
     end
 
+    def load_client
+      @client = Client.find(params[:client_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
-      @schedule = Schedule.find(params[:id])
+      @schedule = @client.schedules.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
