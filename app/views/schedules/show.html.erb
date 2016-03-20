@@ -37,13 +37,13 @@
 
 <p>
   <strong>Status:</strong>
-  <%= status_name?(@schedule.status) %>
+  <%= @schedule.get_status_desc %>
 </p>
 
 <p>
   <strong>Client:</strong>
-  <%= @schedule.client %>
+  <%= @schedule.client.name %>
 </p>
 
-<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
-<%= link_to 'Back', schedules_path %>
+<%= link_to 'Edit', edit_client_schedule_path(@client,@schedule) %> |
+<%= link_to 'Back', client_schedules_path(@client) %>

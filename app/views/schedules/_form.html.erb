@@ -1,8 +1,8 @@
-<%= simple_form_for(@schedule) do |f| %>
+<%= simple_form_for([@client,@schedule]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :client %>
+    <!-- <%= f.association :client, disabled: true, selected: params[:client_id] %> -->
     <%= f.input :name %>
     <%= f.input :contact_name %>
     <%= f.input :contact_phone %>
@@ -10,7 +10,15 @@
     <%= f.input :visit_datetime %>
     <%= f.input :address %>
     <%= f.input :observation %>
-    <%= f.input :status, collection: status_options, selected: @schedule.status %>
+
+    <!-- <%= f.input :status,
+      collection: status_options,
+      selected: @schedule.status %> -->
+
+    <!-- <%= f.input :confirmation_status,
+      collection: confirmation_status_options,
+      selected: @schedule.confirmation_status %> -->
+
   </div>
 
   <div class="form-actions">

@@ -1,0 +1,51 @@
+<div id="myModal<%= client.id %>" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xl">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+          Agendamentos detalhados para <%= client.name %>
+        </h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+        <table
+          id="table"
+          class="table table-hover"
+          data-toggle="table"
+          data-search="false"
+          data-pagination="false"
+          data-show-columns="false"
+          data-show-refresh="false">
+          <thead>
+            <tr>
+              <th></th>
+              <% @dates.each do |d| %>
+                <th data-sortable="false"><%= get_date_name(d) %></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+          <% Schedule.get_valid_status.each do |s| %>
+          <tr>
+            <td class="status_desc"><%= s[:desc] %></td>
+            <% dates.each do |d| %>
+              <td><%= get_schedules_count_per_status(schedule[client.id][d],s[:val]) %></td>
+            <% end %>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

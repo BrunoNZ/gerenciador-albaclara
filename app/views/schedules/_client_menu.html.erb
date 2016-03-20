@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+    Selecione um cliente
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <% Client.find_each do |client| %>
+      <li><%= link_to client.name, client_schedules_url(client.id) %></li>
+    <% end %>
+  </ul>
+</div>
