@@ -36,7 +36,7 @@ class SchedulesController < ApplicationController
 
     respond_to do |format|
       if @schedule.save
-        format.html { redirect_to [@client,@schedule], notice: 'Schedule was successfully created.' }
+        format.html { redirect_to [@client,@schedule], notice: 'O agendamento foi criado com sucesso.' }
         format.json { render :show, status: :created, location: @schedule }
         ClientMailer.new_schedule(@schedule).deliver_later
       else
@@ -52,7 +52,7 @@ class SchedulesController < ApplicationController
     status_changed = detect_confirmation_status_changed(@schedule, schedule_params)
     respond_to do |format|
       if @client.schedule.update(schedule_params)
-        format.html { redirect_to [@client,@schedule], notice: 'Schedule was successfully updated.' }
+        format.html { redirect_to [@client,@schedule], notice: 'O agendamento foi alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @schedule }
         ClientMailer.update_schedule_status(@schedule).deliver_later if status_changed
       else
@@ -67,7 +67,7 @@ class SchedulesController < ApplicationController
   def destroy
     @schedule.destroy
     respond_to do |format|
-      format.html { redirect_to schedules_url, notice: 'Schedule was successfully destroyed.' }
+      format.html { redirect_to schedules_url, notice: 'O agendamento foi removido com sucesso.' }
       format.json { head :no_content }
     end
   end
