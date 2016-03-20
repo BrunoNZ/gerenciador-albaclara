@@ -52,7 +52,7 @@ class SchedulesController < ApplicationController
     status_changed = detect_confirmation_status_changed(@schedule, schedule_params)
     respond_to do |format|
       if @client.schedule.update(schedule_params)
-        format.html { redirect_to [@parent,@schedule], notice: 'Schedule was successfully updated.' }
+        format.html { redirect_to [@client,@schedule], notice: 'Schedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @schedule }
         ClientMailer.update_schedule_status(@schedule).deliver_later if status_changed
       else

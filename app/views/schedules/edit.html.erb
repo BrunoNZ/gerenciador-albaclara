@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @schedule %> |
-<%= link_to 'Back', schedules_path %>
+<%= link_to 'Show', client_schedule_url(@client,@schedule) %> |
+<%= link_to 'Back', client_schedules_path(@client) %>
