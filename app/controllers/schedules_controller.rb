@@ -51,7 +51,8 @@ class SchedulesController < ApplicationController
   def update
     status_changed = detect_confirmation_status_changed(@schedule, schedule_params)
     respond_to do |format|
-      if @client.schedule.update(schedule_params)
+      puts "UPDATE: #{schedule_params}"
+      if @schedule.update(schedule_params)
         format.html { redirect_to [@client,@schedule], notice: 'O agendamento foi alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @schedule }
         ClientMailer.update_schedule_status(@schedule).deliver_later if status_changed

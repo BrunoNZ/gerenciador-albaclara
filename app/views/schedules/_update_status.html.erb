@@ -1,5 +1,16 @@
-<% if schedule.status.equal? 0 %>
-
-  <%= select "schedule", "status", status_options, {include_blank: true} %>
-
-<% end %>
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+    <%= schedule.status %>
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <% Schedule.get_valid_status.each do |status| %>
+      <li>
+        <%= button_to client_schedule_path(@client,schedule), params: {"schedule[status]" => status[:val]},
+          method: :put,
+          data: { confirm: "Tem certeza que deseja alterar o status desse agendamento para: #{status[:desc]}?" } do %>
+          <%= status[:desc] %>
+        <%end%>
+      </li>
+    <% end %>
+  </ul>
+</div>
