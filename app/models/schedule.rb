@@ -16,7 +16,7 @@ class Schedule < ActiveRecord::Base
   end
 
   def get_confirmation_status_desc
-    return Schedule.get_valid_confirmation_status[self.confirmation_status][:desc]
+    return Schedule.get_valid_confirmation_status[self.confirmation_status]
   end
 
   def self.get_valid_status

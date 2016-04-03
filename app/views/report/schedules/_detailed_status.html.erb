@@ -29,11 +29,11 @@
             </tr>
           </thead>
           <tbody>
-          <% Schedule.get_valid_status.each do |s| %>
+          <% Schedule.get_valid_status.each do |status,desc| %>
           <tr>
-            <td class="status_desc"><%= s[:desc] %></td>
+            <td class="status_desc"><%= desc %></td>
             <% dates.each do |d| %>
-              <td><%= get_schedules_count_per_status(schedule[client.id][d],s[:val]) %></td>
+              <td><%= get_schedules_count_per_status(schedule[client.id][d],status) %></td>
             <% end %>
           </tr>
           <% end %>
