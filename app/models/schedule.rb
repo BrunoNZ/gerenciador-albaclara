@@ -3,6 +3,7 @@ class Schedule < ActiveRecord::Base
 
   validates_inclusion_of :status, :in => 0..5
   validates_inclusion_of :confirmation_status, :in => 0..2
+  validates :visit_datetime, presence: true
 
   after_initialize :init
 
@@ -11,27 +12,27 @@ class Schedule < ActiveRecord::Base
   end
 
   def get_status_desc
-    return Schedule.get_valid_status[self.status][:desc] || ""
+    return Schedule.get_valid_status[self.status]
   end
 
   def get_confirmation_status_desc
-    return get_valid_confirmation_status[self.confirmation_status][:desc]
+    return Schedule.get_valid_confirmation_status[self.confirmation_status][:desc]
   end
 
   def self.get_valid_status
-    @valid_status ||= [
-      {val: 1, desc: 'A ser realizado'},
-      {val: 2, desc: 'Visita desmarcada'},
-      {val: 3, desc: 'Visita fora do target'},
-      {val: 4, desc: 'Visita dentro do target'},
-      {val: 5, desc: 'Visita com potencial de fechamento'}
+    @valid_status ||= Hash[
+      1 => 'A ser realizado',
+      2 => 'Visita desmarcada',
+      3 => 'Visita fora do target',
+      4 => 'Visita dentro do target',
+      5 => 'Visita com potencial de fechamento'
     ]
   end
 
   def self.get_valid_confirmation_status
-    @valid_confirmation_status ||= [
-      {val: 1, desc: 'Confirmado'},
-      {val: 2, desc: 'Desconfirmado'}
+    @valid_confirmation_status ||= Hash[
+      1 => 'Confirmado',
+      2 => 'Desconfirmado'
     ]
   end
 

@@ -35,12 +35,12 @@
               <%= schedule.status %>
             <span class="caret"></span></button>
             <ul class="dropdown-menu">
-              <% Schedule.get_valid_status.each do |status| %>
+              <% Schedule.get_valid_status.each do |status,desc|%>
                 <li>
-                  <%= button_to client_schedule_path(@client,schedule), params: {"schedule[status]" => status[:val]},
+                  <%= button_to client_schedule_path(@client,schedule), params: {"schedule[status]" => status},
                     method: :put,
-                    data: { confirm: "Tem certeza que deseja alterar o status desse agendamento para: #{status[:desc]}?" } do %>
-                    <%= status[:desc] %>
+                    data: { confirm: "Tem certeza que deseja alterar o status desse agendamento para: #{desc}?" } do %>
+                    <%= desc %>
                   <%end%>
                 </li>
               <% end %>

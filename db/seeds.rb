@@ -10,7 +10,7 @@ puts 'CREATED ADMIN USER: ' << user.email
 
 if Rails.env.development?
 
-  (0..25).each do |client|
+  (1..2).each do |client|
     puts 'CRIANDO CLIENTE: ' << client.to_s
     Client.create(
       name: "Cliente #{client.to_s}",
@@ -20,17 +20,12 @@ if Rails.env.development?
       contacts_attributes: [
         {
           name: "Dono 1 do Cliente #{client}",
-          email: "dono1@cliente#{client}.com",
+          email: "brunonzanette@hotmail.com",
           phone: "1234-5678"
         },
         {
           name: "Dono 2 do Cliente #{client}",
-          email: "dono3@cliente#{client}.com",
-          phone: "1234-5678"
-        },
-        {
-          name: "Dono 3 do Cliente #{client}",
-          email: "dono3@cliente#{client}.com",
+          email: "danielnoceraz@gmail.com",
           phone: "1234-5678"
         }
       ]
@@ -39,11 +34,11 @@ if Rails.env.development?
 
   Client.all.each do |client|
     puts 'CRIANDO AGENDAMENTOS PARA CLIENTE: ' << client.name
-    (0..100).each do |schedule|
+    (1..100).each do |schedule|
       # puts ' --> AGENDAMENTO: ' << schedule.to_s
       contact_date = Faker::Date.between(1.year.ago,Time.now)
       visit_datetime = Faker::Time.between(contact_date + 2.days, contact_date + 21.days)
-      Schedule.create(
+      s = client.schedules.new(
         name: "Agendamento #{schedule} do Cliente #{client.id}",
         contact_name: "Nome do contato",
         contact_phone: "1234-5678",
@@ -52,9 +47,8 @@ if Rails.env.development?
         address: "Rua do Agendamento #{schedule} do Cliente #{client.id}",
         observation: "",
         status: Faker::Number.between(1,5),
-        confirmation_status: Faker::Number.between(1,2),
-        client_id: "#{client.id}"
-      )
+        confirmation_status: Faker::Number.between(1,2)
+      ).save
     end
   end
 

@@ -2,7 +2,7 @@ module SchedulesHelper
 
   # -------------------------------------------------------------------------- #
   def confirmation_status_options
-    Schedule.get_valid_confirmation_status.map { |s| [s[:desc], s[:val]] }
+    Schedule.get_valid_confirmation_status.map{ |status,desc| [desc,status] }
   end
 
   def schedule_confirmation_status_btnclasses(schedule)
@@ -16,7 +16,7 @@ module SchedulesHelper
 
   # -------------------------------------------------------------------------- #
   def status_options
-    Schedule.get_valid_status.map { |s| [s[:desc], s[:val]] }
+    Schedule.get_valid_status.map { |status,desc| [desc, status] }
   end
   # -------------------------------------------------------------------------- #
 
