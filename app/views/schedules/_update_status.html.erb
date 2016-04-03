@@ -5,7 +5,7 @@
   <ul class="dropdown-menu">
     <% Schedule.get_valid_status.each do |status,desc| %>
       <li>
-        <%= button_to client_schedule_path(@client,schedule), params: {"schedule[status]" => status},
+        <%= link_to client_schedule_path(@client,schedule,params: {"schedule[status]" => status}),
           method: :put,
           data: { confirm: "Tem certeza que deseja alterar o status desse agendamento para: #{desc}?" } do %>
           <%= desc %>

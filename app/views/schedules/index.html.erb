@@ -1,12 +1,9 @@
-<p id="notice"><%= notice %></p>
+
+<p><%= render partial: 'client_menu' %></p>
 
 <% unless @schedules.nil? %>
   <h1>Agendamentos de <%= @client.name %></h1>
-<% else %>
-  <h1>Agendamentos</h1>
 <% end %>
-
-<%= render partial: 'client_menu' %>
 
 <% unless @schedules.nil? %>
   <%= button_to new_client_schedule_path(@client.id), method: :get, class: "btn btn-success" do %>

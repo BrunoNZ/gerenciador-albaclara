@@ -6,6 +6,7 @@ class SchedulesController < ApplicationController
 
   # GET /schedules
   def empty_index
+    flash.now[:notice] = "Selecione um cliente"
     render 'index'
   end
 

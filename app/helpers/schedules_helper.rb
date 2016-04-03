@@ -20,4 +20,14 @@ module SchedulesHelper
   end
   # -------------------------------------------------------------------------- #
 
+  def status_update_confirmation_message(old_status,new_status)
+    message = ""
+    message << "Tem certeza que deseja alterar o status?\n"
+    message << "\n"
+    message << "* De: #{old_status}\n"
+    message << "\n"
+    message << "* Para: #{new_status}"
+    message
+  end
+
 end

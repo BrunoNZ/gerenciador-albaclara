@@ -16,13 +16,17 @@
       <th data-field="observation" data-sortable="true">Observações</th>
       <th data-field="status" data-sortable="true">Status</th>
       <th data-field="confirmation_status" data-sortable="true">Confirmação</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%= schedule.name %></td>
+        <td>
+          <%= button_to client_schedule_path(@client,schedule), method: :get, class: "btn btn-default" do %>
+            <!-- <span class="glyphicon glyphicon-eye-open view-schedule-btn" aria-hidden="true"></span> -->
+            <%= schedule.name %>
+          <% end %>
+        </td>
         <td><%= schedule.contact_name %></td>
         <td><%= schedule.contact_phone %></td>
         <td><%= schedule.contact_date %></td>
@@ -31,15 +35,17 @@
         <td class="col-md-2"><%= schedule.observation %></td>
         <td class="status-btns">
           <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-              <%= schedule.status %>
+            <button class="btn btn-primary dropdown-toggle status-desc-menu-btn" type="button" data-toggle="dropdown">
+              <%= schedule.get_status_desc %>
             <span class="caret"></span></button>
             <ul class="dropdown-menu">
               <% Schedule.get_valid_status.each do |status,desc|%>
                 <li>
-                  <%= button_to client_schedule_path(@client,schedule), params: {"schedule[status]" => status},
+                  <%= link_to client_schedule_path(@client,schedule,params: {"schedule[status]" => status}),
                     method: :put,
-                    data: { confirm: "Tem certeza que deseja alterar o status desse agendamento para: #{desc}?" } do %>
+                    data: {
+                      confirm: status_update_confirmation_message(schedule.get_status_desc,status)
+                    } do %>
                     <%= desc %>
                   <%end%>
                 </li>
@@ -83,31 +89,6 @@
             </ul>
 
           <% end %>
-          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-
-        </td>
-        <td class="action-btns">
-
-          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-          <!-- ACTION BUTTONS -->
-          <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-          <ul class="list-inline">
-            <li>
-              <%= button_to client_schedule_path(@client,schedule), method: :get, class: "btn btn-default" do %>
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-              <% end %>
-            </li>
-            <li>
-              <%= button_to edit_client_schedule_path(@client,schedule), method: :get, class: "btn btn-primary" do %>
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              <% end %>
-            </li>
-            <li>
-              <%= button_to client_schedule_path(@client,schedule), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              <% end %>
-            </li>
-          </ul>
           <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 
         </td>
