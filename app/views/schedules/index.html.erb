@@ -3,12 +3,19 @@
 
 <% unless @schedules.nil? %>
   <h1>Agendamentos de <%= @client.name %></h1>
-<% end %>
 
-<% unless @schedules.nil? %>
-  <%= button_to new_client_schedule_path(@client.id), method: :get, class: "btn btn-success" do %>
-    <span class="glyphicon glyphicon-plus" aria-hidden="true">Novo</span>
-  <% end %>
+  <ul class="list-inline">
+    <li>
+      <%= button_to new_client_schedule_path(@client.id), method: :get, class: "btn btn-success" do %>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+      <% end %>
+    </li>
+    <li>
+      <%= button_to client_schedules_url(format: "csv"), method: :get, class: "btn btn-default" do %>
+        <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download
+      <% end %>
+    </li>
+  </ul>
 
   <%= render partial: 'schedules_table' %>
 <% end %>

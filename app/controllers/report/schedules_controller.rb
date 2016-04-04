@@ -1,3 +1,5 @@
+require 'csv'
+
 class Report::SchedulesController < ApplicationController
 
   before_action :authenticate_user!
@@ -29,6 +31,16 @@ class Report::SchedulesController < ApplicationController
   end
 
   private
+
+    def report_to_csv
+      headers = []
+      headers << "client"
+      @dates.each do |date| headers << date end
+
+      CSV.generate(headers: headers) do |csv|
+      end
+
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_report_schedule
       @schedule = Schedule.find(params[:id])

@@ -7,6 +7,10 @@ class ProductivitiesController < ApplicationController
   # GET /productivities.json
   def index
     @productivities = Productivity.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @productivities.to_csv }
+    end
   end
 
   # GET /productivities/1

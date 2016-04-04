@@ -14,6 +14,10 @@ class SchedulesController < ApplicationController
   # GET /clients/1/schedules.json
   def index
     @schedules = @client.schedules
+    respond_to do |format|
+      format.html
+      format.csv { send_data @schedules.to_csv }
+    end
   end
 
   # GET /clients/1/schedules/1
