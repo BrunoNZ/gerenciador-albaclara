@@ -7,7 +7,7 @@ class Productivity < ActiveRecord::Base
 
   def self.to_csv
     attributes = %w{
-      id client analysis_start_date analysis_end_date call_qty
+      id client_id analysis_start_date analysis_end_date call_qty
       answered_call_qty interlocutor_qty schedule_qty
     }
 
