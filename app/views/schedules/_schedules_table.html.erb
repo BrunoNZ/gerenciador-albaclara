@@ -44,7 +44,7 @@
                   <%= link_to client_schedule_path(@client,schedule,params: {"schedule[status]" => status}),
                     method: :put,
                     data: {
-                      confirm: status_update_confirmation_message(schedule.get_status_desc,status)
+                      confirm: status_update_confirmation_message(schedule.get_status_desc,desc)
                     } do %>
                     <%= desc %>
                   <%end%>
