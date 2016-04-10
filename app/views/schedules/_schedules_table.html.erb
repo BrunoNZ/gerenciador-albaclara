@@ -58,23 +58,25 @@
           <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
           <!-- UPDATE_CONFIRMATION_STATUS -->
           <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-          <% if !schedule.confirmation_status.equal? 0 %>
+          <% if schedule.confirmation_status.equal? 0 %>
 
             <ul class="list-inline">
               <li>
-                <%= button_to client_schedule_path(@client,schedule), "schedule[confirmation_status]" => 1,
+                <%= link_to client_schedule_path(@client, schedule, params: {"schedule[confirmation_status]" => 1}),
                   method: :put,
-                  data: { confirm: 'Tem certeza que deseja CONFIRMAR esse agendamento?' },
-                  class: "btn btn-success" do %>
-                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  data: {
+                    confirm: 'Tem certeza que deseja CONFIRMAR esse agendamento?'
+                  } do %>
+                  <span class="btn btn-success glyphicon glyphicon-ok" aria-hidden="true"></span>
                 <% end %>
               </li>
               <li>
-                <%= button_to client_schedule_path(@client,schedule), "schedule[confirmation_status]" => 2,
+                <%= link_to client_schedule_path(@client, schedule, params: {"schedule[confirmation_status]" => 2}),
                   method: :put,
-                  data: { confirm: 'Tem certeza que deseja DESCONFIRMAR esse agendamento?' },
-                  class: "btn btn-danger" do %>
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  data: {
+                    confirm: 'Tem certeza que deseja DESCONFIRMAR esse agendamento?'
+                  } do %>
+                  <span class="btn btn-danger glyphicon glyphicon-remove" aria-hidden="true"></span>
                 <% end %>
               </li>
             <ul>
