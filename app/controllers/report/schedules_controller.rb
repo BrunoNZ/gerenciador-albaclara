@@ -21,7 +21,11 @@ class Report::SchedulesController < ApplicationController
       @dates << s.get_visit_date
     end
 
-    @dates.uniq!.sort!.take(12)
+    unless @dates.empty?
+        @dates.uniq!.sort!.take(12)
+    else
+        flash.now[:warning] = "Nenhum agendamento encontrado."
+    end
 
   end
 
