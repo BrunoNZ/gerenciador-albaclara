@@ -49,6 +49,17 @@ if Rails.env.development?
         status: Faker::Number.between(1,5),
         confirmation_status: Faker::Number.between(1,2)
       ).save
+
+      analysis_start_date = Faker::Date.between(1.year.ago,Time.now)
+      analysis_end_date = Faker::Date.between(analysis_start_date + 1.days, analysis_start_date + 7.days)
+      s = client.productivities.new(
+        analysis_start_date: analysis_start_date,
+        analysis_end_date: analysis_end_date,
+        call_qty: Faker::Number.between(0,20),
+        answered_call_qty: Faker::Number.between(0,20),
+        interlocutor_qty: Faker::Number.between(0,20),
+        schedule_qty: Faker::Number.between(0,20)
+      ).save
     end
   end
 
