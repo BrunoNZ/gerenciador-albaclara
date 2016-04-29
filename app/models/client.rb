@@ -1,3 +1,5 @@
+require 'csv'
+
 class Client < ActiveRecord::Base
 
   has_many :contacts
@@ -13,4 +15,18 @@ class Client < ActiveRecord::Base
   def find_last_productivity
     return self.productivities.order("created_at").last
   end
+
+  def self.to_csv
+     attributes = %w{
+       id name billing_date contract_start_date address
+     }
+
+     CSV.generate(headers: true) do |csv|
+       csv << attributes
+
+       all.each do |schedule|
+         csv << attributes.map{ |attr| schedule.send(attr) }
+       end
+     end
+   end
 end
