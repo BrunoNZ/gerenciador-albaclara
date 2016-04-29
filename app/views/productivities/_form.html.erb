@@ -3,12 +3,12 @@
 
   <div class="form-inputs">
     <!-- <%= f.association :client %> -->
-    <%= f.input :analysis_start_date %>
-    <%= f.input :analysis_end_date %>
-    <%= f.input :call_qty %>
-    <%= f.input :answered_call_qty %>
-    <%= f.input :interlocutor_qty %>
-    <%= f.input :schedule_qty %>
+    <%= f.input :analysis_start_date, :label => "Início da análise" %>
+    <%= f.input :analysis_end_date, :label => "Fim da análise" %>
+    <%= f.input :call_qty, :label => "Ligações" %>
+    <%= f.input :answered_call_qty, :label => "Ligações respondidas" %>
+    <%= f.input :interlocutor_qty, :label => "Interlocutores" %>
+    <%= f.input :schedule_qty, :label => "Agendamentos" %>
   </div>
 
   <div class="form-actions">

@@ -1,37 +1,46 @@
+<h1>Produtividade de <%= @client.name %></h1>
+<ul class="list-inline">
+  <li>
+    <%= button_to edit_client_productivity_path(@client,@productivity), method: :get, class: "btn btn-primary" do %>
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+      Editar
+    <% end %>
+  </li>
+  <li>
+    <%= button_to client_productivity_path(@client,@productivity), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      Remover
+    <% end %>
+  </li>
+</ul>
+<br>
+
 <p>
-  <strong>Analysis start date:</strong>
+  <strong>Início da análise:</strong>
   <%= @productivity.analysis_start_date %>
 </p>
 
 <p>
-  <strong>Analysis end date:</strong>
+  <strong>Fim da análise:</strong>
   <%= @productivity.analysis_end_date %>
 </p>
 
 <p>
-  <strong>Call qty:</strong>
+  <strong>Ligações:</strong>
   <%= @productivity.call_qty %>
 </p>
 
 <p>
-  <strong>Answered call qty:</strong>
+  <strong>Ligações respondidas:</strong>
   <%= @productivity.answered_call_qty %>
 </p>
 
 <p>
-  <strong>Interlocutor qty:</strong>
+  <strong>Interlocutores:</strong>
   <%= @productivity.interlocutor_qty %>
 </p>
 
 <p>
-  <strong>Schedule qty:</strong>
+  <strong>Agendamentos:</strong>
   <%= @productivity.schedule_qty %>
 </p>
-
-<p>
-  <strong>Client:</strong>
-  <%= @productivity.client %>
-</p>
-
-<%= link_to 'Edit', edit_productivity_path(@productivity) %> |
-<%= link_to 'Back', productivities_path %>

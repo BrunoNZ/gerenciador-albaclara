@@ -3,20 +3,20 @@
 
   <div class="form-inputs">
     <!-- <%= f.association :client, disabled: true, selected: params[:client_id] %> -->
-    <%= f.input :name %>
-    <%= f.input :contact_name %>
-    <%= f.input :contact_phone %>
-    <%= f.input :contact_date %>
-    <%= f.input :visit_datetime %>
-    <%= f.input :address %>
-    <%= f.input :observation %>
+    <%= f.input :name, :label => "Nome da empresa"  %>
+    <%= f.input :contact_name, :label => "Nome do contato" %>
+    <%= f.input :contact_phone, :label => "Telefone do contato" %>
+    <%= f.input :contact_date, :label => "Data do contato" %>
+    <%= f.input :visit_datetime, :label => "Data da Visita" %>
+    <%= f.input :address, :label => "Endereço" %>
+    <%= f.input :observation, :label => "Observações" %>
 
-    <%= f.input :status,
+    <%= f.input :status, :label => "Status",
       collection: status_options,
       selected: @schedule.status,
       include_blank: true %>
 
-    <%= f.input :confirmation_status,
+    <%= f.input :confirmation_status, :label => "Status de confirmação",
       collection: confirmation_status_options,
       selected: @schedule.confirmation_status,
       include_blank: true %>
