@@ -13,11 +13,13 @@
 
     <%= f.input :status,
       collection: status_options,
-      selected: @schedule.status %>
+      selected: @schedule.status,
+      include_blank: true %>
 
     <%= f.input :confirmation_status,
       collection: confirmation_status_options,
-      selected: @schedule.confirmation_status %>
+      selected: @schedule.confirmation_status,
+      include_blank: true %>
 
   </div>
 

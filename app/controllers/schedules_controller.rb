@@ -13,7 +13,7 @@ class SchedulesController < ApplicationController
   # GET /clients/1/schedules
   # GET /clients/1/schedules.json
   def index
-    @schedules = @client.schedules
+    @schedules = @client.schedules.order(updated_at: :desc, created_at: :desc)
     respond_to do |format|
       format.html
       format.csv { send_data @schedules.to_csv }
@@ -41,7 +41,7 @@ class SchedulesController < ApplicationController
 
     respond_to do |format|
       if @schedule.save
-        format.html { redirect_to [@client,@schedule], notice: 'O agendamento foi criado com sucesso.' }
+        format.html { redirect_to client_schedules_url(@client), notice: 'O agendamento foi criado com sucesso.' }
         format.json { render :show, status: :created, location: @schedule }
         ClientMailer.new_schedule(@schedule).deliver_later
       else
@@ -57,7 +57,7 @@ class SchedulesController < ApplicationController
     status_changed = detect_confirmation_status_changed(@schedule, schedule_params)
     respond_to do |format|
       if @schedule.update(schedule_params)
-        format.html { redirect_to [@client,@schedule], notice: 'O agendamento foi alterado com sucesso.' }
+        format.html { redirect_to client_schedules_url(@client), notice: 'O agendamento foi alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @schedule }
         ClientMailer.update_schedule_confirmation_status(@schedule).deliver_later if status_changed
       else
