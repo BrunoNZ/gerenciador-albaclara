@@ -25,20 +25,20 @@
       <th>Data de cobrança</th>
       <th>Início do contrato</th>
       <th>Endereço</th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @clients.each do |client| %>
       <tr>
-        <td><%= client.name %></td>
+        <td>
+          <%= button_to client, method: :get, class: "btn btn-default" do %>
+            <%= client.name %>
+          <% end %>
+        </td>
         <td><%= client.billing_date %></td>
         <td><%= client.contract_start_date %></td>
         <td><%= client.address %></td>
-        <td class="action-btns">
-          <%= render partial: "action_btns", object: client, as: 'client' %>
-        </td>
       </tr>
     <% end %>
   </tbody>

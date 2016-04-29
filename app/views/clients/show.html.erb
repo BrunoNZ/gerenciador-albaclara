@@ -1,7 +1,19 @@
-<p>
-  <strong>Name:</strong>
-  <%= @client.name %>
-</p>
+<h1><%= @client.name %></h1>
+<ul class="list-inline">
+  <li>
+    <%= button_to edit_client_path(@client), method: :get, class: "btn btn-primary" do %>
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+      Editar
+    <% end %>
+  </li>
+  <li>
+    <%= button_to @client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      Remover
+    <% end %>
+  </li>
+</ul>
+<br>
 
 <p>
   <strong>Billing date:</strong>
@@ -14,7 +26,7 @@
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>Endereço:</strong>
   <%= @client.address %>
 </p>
 
@@ -26,6 +38,3 @@
     <% end %>
   </ul>
 </p>
-
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
