@@ -6,7 +6,7 @@ module SchedulesHelper
   end
 
   def schedule_confirmation_status_btnclasses(schedule)
-    if schedule.status.equal? 1
+    if schedule.confirmation_status.equal? 1
       return 'glyphicon glyphicon-ok btn btn-success disabled'
     else
       return 'glyphicon glyphicon-remove btn btn-danger disabled'
