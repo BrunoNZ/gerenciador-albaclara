@@ -26,30 +26,30 @@
       data-show-refresh="true">
       <thead>
         <tr>
-          <th data-field="client" data-sortable="true">Cliente</th>
+          <th></th>
           <th data-field="analysis_start_date" data-sortable="true">Início da análise</th>
           <th data-field="analysis_end_date" data-sortable="true">Fim da análise</th>
           <th data-field="call_qty" data-sortable="true">Ligações</th>
           <th data-field="answered_call_qty" data-sortable="true">Ligações respondidas</th>
           <th data-field="interlocutor_qty" data-sortable="true">Interlocutores</th>
           <th data-field="schedule_qty" data-sortable="true">Agendamentos</th>
-          <th></th>
         </tr>
       </thead>
 
       <tbody>
         <% @productivities.each do |productivity| %>
           <tr>
-            <!-- <td><%= link_to productivity.client.name, client_path(productivity.client) %></td> -->
+            <td class="view-btn-field">
+              <%= button_to client_productivity_path(@client,productivity), method: :get, class: "btn btn-default" do %>
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <% end %>
+            </td>
             <td><%= productivity.analysis_start_date %></td>
             <td><%= productivity.analysis_end_date %></td>
             <td><%= productivity.call_qty %></td>
             <td><%= productivity.answered_call_qty %></td>
             <td><%= productivity.interlocutor_qty %></td>
             <td><%= productivity.schedule_qty %></td>
-            <!-- <td class="action-btns">
-              <%= render partial: "action_btns", object: productivity, as: 'productivity' %>
-            </td> -->
           </tr>
         <% end %>
       </tbody>
