@@ -54,13 +54,12 @@ class SchedulesController < ApplicationController
   # PATCH/PUT /clients/1/schedules/1
   # PATCH/PUT /clients/1/schedules/1.json
   def update
-    status_changed =  detect_status_changed(@schedule, schedule_params) ||
-                        detect_confirmation_status_changed(@schedule, schedule_params)
+    status_changed = detect_confirmation_status_changed(@schedule, schedule_params)
     respond_to do |format|
       if @schedule.update(schedule_params)
         format.html { redirect_to [@client,@schedule], notice: 'O agendamento foi alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @schedule }
-        ClientMailer.update_schedule_status(@schedule).deliver_later if status_changed
+        ClientMailer.update_schedule_confirmation_status(@schedule).deliver_later if status_changed
       else
         format.html { render :edit }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
