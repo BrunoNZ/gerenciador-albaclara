@@ -34,7 +34,7 @@ class ClientMailer < ApplicationMailer
 
     unless @schedule.nil? then
       mail(to: contacts_of(@client),
-        subject: 'ALBACLARA - Novo agendamento',
+        subject: subject,
         template_name: template)
     end
   end
