@@ -1,54 +1,57 @@
-<h1>Produtividade</h1>
+<p><%= render partial: 'client_menu' %></p>
+
+<% unless @productivities.nil? %>
+  <h1>Produtividade de <%= @client.name %></h1>
+
+    <ul class="list-inline">
+      <li>
+        <%= button_to new_client_productivity_path(@client.id), method: :get, class: "btn btn-success" do %>
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+        <% end %>
+      </li>
+      <li>
+        <%= button_to client_productivities_url(format: "csv"), method: :get, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download
+        <% end %>
+      </li>
+    </ul>
 
 
-<ul class="list-inline">
-  <li>
-    <%= button_to new_productivity_path, method: :get, class: "btn btn-success" do %>
-      <span class="glyphicon glyphicon-plus" aria-hidden="true">Novo</span>
-    <% end %>
-  </li>
-  <li>
-    <%= button_to productivities_path(format: "csv"), method: :get, class: "btn btn-default" do %>
-      <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download
-    <% end %>
-  </li>
-</ul>
+    <table id="table"
+      class="table table-hover"
+      data-toggle="table"
+      data-search="true"
+      data-pagination="true"
+      data-show-columns="true"
+      data-show-refresh="true">
+      <thead>
+        <tr>
+          <th data-field="client" data-sortable="true">Cliente</th>
+          <th data-field="analysis_start_date" data-sortable="true">Início da análise</th>
+          <th data-field="analysis_end_date" data-sortable="true">Fim da análise</th>
+          <th data-field="call_qty" data-sortable="true">Ligações</th>
+          <th data-field="answered_call_qty" data-sortable="true">Ligações respondidas</th>
+          <th data-field="interlocutor_qty" data-sortable="true">Interlocutores</th>
+          <th data-field="schedule_qty" data-sortable="true">Agendamentos</th>
+          <th></th>
+        </tr>
+      </thead>
 
-
-<table id="table"
-  class="table table-hover"
-  data-toggle="table"
-  data-search="true"
-  data-pagination="true"
-  data-show-columns="true"
-  data-show-refresh="true">
-  <thead>
-    <tr>
-      <th data-field="client" data-sortable="true">Cliente</th>
-      <th data-field="analysis_start_date" data-sortable="true">Início da análise</th>
-      <th data-field="analysis_end_date" data-sortable="true">Fim da análise</th>
-      <th data-field="call_qty" data-sortable="true">Ligações</th>
-      <th data-field="answered_call_qty" data-sortable="true">Ligações respondidas</th>
-      <th data-field="interlocutor_qty" data-sortable="true">Interlocutores</th>
-      <th data-field="schedule_qty" data-sortable="true">Agendamentos</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @productivities.each do |productivity| %>
-      <tr>
-        <td><%= link_to productivity.client.name, client_path(productivity.client) %></td>
-        <td><%= productivity.analysis_start_date %></td>
-        <td><%= productivity.analysis_end_date %></td>
-        <td><%= productivity.call_qty %></td>
-        <td><%= productivity.answered_call_qty %></td>
-        <td><%= productivity.interlocutor_qty %></td>
-        <td><%= productivity.schedule_qty %></td>
-        <td class="action-btns">
-          <%= render partial: "action_btns", object: productivity, as: 'productivity' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @productivities.each do |productivity| %>
+          <tr>
+            <!-- <td><%= link_to productivity.client.name, client_path(productivity.client) %></td> -->
+            <td><%= productivity.analysis_start_date %></td>
+            <td><%= productivity.analysis_end_date %></td>
+            <td><%= productivity.call_qty %></td>
+            <td><%= productivity.answered_call_qty %></td>
+            <td><%= productivity.interlocutor_qty %></td>
+            <td><%= productivity.schedule_qty %></td>
+            <!-- <td class="action-btns">
+              <%= render partial: "action_btns", object: productivity, as: 'productivity' %>
+            </td> -->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
