@@ -25,7 +25,7 @@ class ClientMailer < ApplicationMailer
     @client = @schedule.client
 
     if @schedule.confirmation_status.equal? 1 then
-      template_name = 'confirm_schedule_status'
+      template = 'confirm_schedule_status'
       subject = 'ALBACLARA - Agendamento confirmado'
     else
       template = 'unconfirm_schedule_status'
