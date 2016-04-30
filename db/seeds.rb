@@ -47,7 +47,7 @@ if Rails.env.development?
         address: "Rua do Agendamento #{schedule} do Cliente #{client.id}",
         observation: "",
         status: Faker::Number.between(1,5),
-        confirmation_status: Faker::Number.between(1,2)
+        confirmation_status: 0
       ).save
 
       analysis_start_date = Faker::Date.between(1.year.ago,Time.now)
