@@ -3,12 +3,14 @@
 <ul class="list-inline">
   <li>
     <%= button_to new_client_path, method: :get, class: "btn btn-success" do %>
-      <span class="glyphicon glyphicon-plus" aria-hidden="true">Novo</span>
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      Novo
     <% end %>
   </li>
   <li>
     <%= button_to clients_url(format: "csv"), method: :get, class: "btn btn-default" do %>
-      <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download
+      <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+      Baixar informações dos clientes
     <% end %>
   </li>
 </ul>
