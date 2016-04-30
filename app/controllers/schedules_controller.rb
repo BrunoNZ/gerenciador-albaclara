@@ -50,9 +50,16 @@ class SchedulesController < ApplicationController
 
     respond_to do |format|
       if @schedule.save
-        format.html { redirect_to client_schedules_url(@client), notice: 'O agendamento foi criado com sucesso.' }
+        format.html {
+          redirect_to client_schedules_url(@client),
+            notice: 'O agendamento foi criado com sucesso.'
+        }
         format.json { render :show, status: :created, location: @schedule }
-        ClientMailer.new_schedule(@schedule).deliver_later
+
+        if (@schedule.visit_datetime > Time.now)
+          ClientMailer.new_schedule(@schedule).deliver_later
+        end
+
       else
         format.html { render :new }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
@@ -66,9 +73,16 @@ class SchedulesController < ApplicationController
     status_changed = detect_confirmation_status_changed(@schedule, schedule_params)
     respond_to do |format|
       if @schedule.update(schedule_params)
-        format.html { redirect_to client_schedules_url(@client), notice: 'O agendamento foi alterado com sucesso.' }
+        format.html {
+          redirect_to client_schedules_url(@client),
+            notice: 'O agendamento foi alterado com sucesso.'
+        }
         format.json { render :show, status: :ok, location: @schedule }
-        ClientMailer.update_schedule_confirmation_status(@schedule).deliver_later if status_changed
+
+        if ((@schedule.visit_datetime > Time.now) && status_changed)
+          ClientMailer.update_schedule_confirmation_status(@schedule).deliver_later
+        end
+
       else
         format.html { render :edit }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
@@ -81,7 +95,10 @@ class SchedulesController < ApplicationController
   def destroy
     @schedule.destroy
     respond_to do |format|
-      format.html { redirect_to client_schedules_path(@client), notice: 'O agendamento foi removido com sucesso.' }
+      format.html {
+        redirect_to client_schedules_path(@client),
+          notice: 'O agendamento foi removido com sucesso.'
+      }
       format.json { head :no_content }
     end
   end
