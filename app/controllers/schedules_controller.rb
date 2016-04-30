@@ -112,7 +112,7 @@ class SchedulesController < ApplicationController
 
     def detect_confirmation_status_changed(schedule,params)
       return false if !params.include? "confirmation_status"
-      return false if schedule.confirmation_status.equal? params["confirmation_status"]
+      return false if schedule.confirmation_status.eql? params["confirmation_status"].to_i
       return true
     end
 
