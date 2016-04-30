@@ -21,10 +21,10 @@
     <% @clients.each do |c| %>
       <tr class="total_line">
         <td>
-          <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal<%= c.id %>">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal<%= c.id %>">
             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <%= c.name %>
           </button>
-          <%= c.name %>
         </td>
         <% @dates.each do |d| %>
           <td><%= get_schedules_count(@schedules_per_client[c.id][d]) %></td>
