@@ -1,13 +1,21 @@
 class ProductivitiesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :load_client, except: [:empty_index]
+  before_action :load_client, except: [:index_all]
   before_action :set_productivity, only: [:show, :edit, :update, :destroy]
 
   # GET /productivities
-  def empty_index
-    flash.now[:notice] = "Selecione um cliente"
-    render 'index'
+  def index_all
+    @productivities = Productivity.all.includes(:client)
+
+    respond_to do |format|
+      format.html {
+        @productivities.order!(updated_at: :desc, created_at: :desc).limit!(100)
+        flash.now[:notice] = "Selecione um cliente"
+        render 'index'
+      }
+      format.csv { send_data @productivities.to_csv }
+    end
   end
 
   # GET /clients/1/productivities

@@ -1,0 +1,37 @@
+<table id="table"
+  class="table table-hover"
+  data-toggle="table"
+  data-search="true"
+  data-pagination="true"
+  data-show-columns="true"
+  data-show-refresh="true">
+  <thead>
+    <tr>
+      <th></th>
+      <th data-field="analysis_start_date" data-sortable="true">Início da análise</th>
+      <th data-field="analysis_end_date" data-sortable="true">Fim da análise</th>
+      <th data-field="call_qty" data-sortable="true">Ligações</th>
+      <th data-field="answered_call_qty" data-sortable="true">Ligações respondidas</th>
+      <th data-field="interlocutor_qty" data-sortable="true">Interlocutores</th>
+      <th data-field="schedule_qty" data-sortable="true">Agendamentos</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @productivities.each do |productivity| %>
+      <tr>
+        <td class="view-btn-field">
+          <%= button_to client_productivity_path(productivity.client,productivity), method: :get, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          <% end %>
+        </td>
+        <td><%= productivity.analysis_start_date %></td>
+        <td><%= productivity.analysis_end_date %></td>
+        <td><%= productivity.call_qty %></td>
+        <td><%= productivity.answered_call_qty %></td>
+        <td><%= productivity.interlocutor_qty %></td>
+        <td><%= productivity.schedule_qty %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
