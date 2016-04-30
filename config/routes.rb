@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :schedules
     resources :productivities
   end
-  get 'schedules' => 'schedules#empty_index'
+  get 'schedules' => 'schedules#index_all'
   get 'productivities' => 'productivities#empty_index'
   # resources :users
 

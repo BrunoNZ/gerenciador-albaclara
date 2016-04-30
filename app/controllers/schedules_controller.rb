@@ -1,13 +1,22 @@
 class SchedulesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :load_client, except: [:empty_index]
+  before_action :load_client, except: [:index_all]
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
   # GET /schedules
-  def empty_index
-    flash.now[:notice] = "Selecione um cliente"
-    render 'index'
+  # GET /schedules.json
+  def index_all
+    @schedules = Schedule.all.includes(:client)
+
+    respond_to do |format|
+      format.html {
+        @schedules.order!(updated_at: :desc, created_at: :desc).limit!(100)
+        flash.now[:notice] = "Selecione um cliente"
+        render 'index'
+      }
+      format.csv { send_data @schedules.to_csv }
+    end
   end
 
   # GET /clients/1/schedules
