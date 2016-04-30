@@ -2,7 +2,6 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <!-- <%= f.association :client %> -->
     <%= f.input :analysis_start_date, :label => "Início da análise" %>
     <%= f.input :analysis_end_date, :label => "Fim da análise" %>
     <%= f.input :call_qty, :label => "Ligações" %>
@@ -12,6 +11,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :label => "Salvar" %>
   </div>
 <% end %>

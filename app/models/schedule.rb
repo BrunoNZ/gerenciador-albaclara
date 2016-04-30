@@ -2,7 +2,9 @@ require 'csv'
 
 class Schedule < ActiveRecord::Base
   belongs_to :client
+  validates_associated :client
 
+  validates :name, presence: true
   validates :visit_datetime, presence: true
 
   after_initialize :init
