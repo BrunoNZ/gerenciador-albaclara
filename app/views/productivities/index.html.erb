@@ -1,40 +1,24 @@
-<p><%= render partial: 'client_menu' %></p>
-
 <% unless @productivities.nil? %>
 
-  <% unless @client.nil? %>
+  <h1>Produtividades</h1>
 
-    <h1>Produtividade de <%= @client.name %></h1>
-
-    <ul class="list-inline">
-      <li>
-        <%= button_to new_client_productivity_path(@client.id), method: :get, class: "btn btn-success" do %>
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          Novo
-        <% end %>
-      </li>
-      <li>
-        <%= button_to client_productivities_url(format: "csv"), method: :get, class: "btn btn-default" do %>
-          <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-          Baixar produtividades de <%= @client.name %>
-        <% end %>
-      </li>
-    </ul>
-
-  <% else %>
-
-    <h1>Produtividades</h1>
-
-    <ul class="list-inline">
-      <li>
-        <%= button_to productivities_url(format: "csv"), method: :get, class: "btn btn-default" do %>
-          <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-          Baixar todos as produtividades
-        <% end %>
-      </li>
-    </ul>
-
-  <% end %>
+  <ul class="list-inline">
+    <li>
+      <%= render partial: 'client_menu' %>
+    </li>
+    <li>
+      <%= button_to new_productivity_path, method: :get, class: "btn btn-success" do %>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Novo
+      <% end %>
+    </li>
+    <li>
+      <%= button_to productivities_url(format: "csv"), method: :get, class: "btn btn-default" do %>
+        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+        Baixar produtividades
+      <% end %>
+    </li>
+  </ul>
 
   <%= render partial: 'productivities_table' %>
 

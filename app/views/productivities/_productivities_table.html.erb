@@ -8,6 +8,7 @@
   <thead>
     <tr>
       <th></th>
+      <th data-field="client" data-sortable="true">Cliente</th>
       <th data-field="analysis_start_date" data-sortable="true">Início da análise</th>
       <th data-field="analysis_end_date" data-sortable="true">Fim da análise</th>
       <th data-field="call_qty" data-sortable="true">Ligações</th>
@@ -21,10 +22,11 @@
     <% @productivities.each do |productivity| %>
       <tr>
         <td class="view-btn-field">
-          <%= button_to client_productivity_path(productivity.client,productivity), method: :get, class: "btn btn-default" do %>
+          <%= button_to productivity_path(productivity), method: :get, class: "btn btn-default" do %>
           <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
           <% end %>
         </td>
+        <td><%= productivity.client.name %></td>
         <td><%= productivity.analysis_start_date %></td>
         <td><%= productivity.analysis_end_date %></td>
         <td><%= productivity.call_qty %></td>

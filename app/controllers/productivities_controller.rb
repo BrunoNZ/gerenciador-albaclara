@@ -1,55 +1,44 @@
 class ProductivitiesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :load_client, except: [:index_all]
   before_action :set_productivity, only: [:show, :edit, :update, :destroy]
 
   # GET /productivities
-  def index_all
-    @productivities = Productivity.all.includes(:client)
-
-    respond_to do |format|
-      format.html {
-        @productivities.order!(updated_at: :desc, created_at: :desc).limit!(100)
-        flash.now[:notice] = "Selecione um cliente"
-        render 'index'
-      }
-      format.csv { send_data @productivities.to_csv }
-    end
-  end
-
-  # GET /clients/1/productivities
-  # GET /clients/1/productivities.json
   def index
-    @productivities = @client.productivities.order(updated_at: :desc, created_at: :desc)
+    if params.include? "client" then
+      @productivities = Productivity.where(client: params["client"]).includes(:client)
+    else
+      @productivities = Productivity.all.includes(:client)
+    end
+
     respond_to do |format|
-      format.html
+      format.html { @productivities.order!(updated_at: :desc, created_at: :desc) }
       format.csv { send_data @productivities.to_csv }
     end
   end
 
-  # GET /clients/1/productivities
-  # GET /clients/1/productivities.json
+  # GET /productivities
+  # GET /productivities.json
   def show
   end
 
-  # GET /clients/1/productivities/new
+  # GET /productivities/new
   def new
-    @productivity = @client.productivities.new
+    @productivity = Productivity.new
   end
 
-  # GET /clients/1/productivities/edit
+  # GET /productivities/edit
   def edit
   end
 
-  # POST /clients/1/productivities
-  # POST /clients/1/productivities.json
+  # POST /productivities
+  # POST /productivities.json
   def create
-    @productivity = @client.productivities.new(productivity_params)
+    @productivity = Productivity.new(productivity_params)
 
     respond_to do |format|
       if @productivity.save
-        format.html { redirect_to client_productivities_url(@client), notice: 'Productivity was successfully created.' }
+        format.html { redirect_to productivities_path, notice: 'A produtividade foi criada com sucesso.' }
         format.json { render :show, status: :created, location: @productivity }
       else
         format.html { render :new }
@@ -58,12 +47,12 @@ class ProductivitiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /clients/1/productivities/1
-  # PATCH/PUT /clients/1/productivities/1.json
+  # PATCH/PUT /productivities/1
+  # PATCH/PUT /productivities/1.json
   def update
     respond_to do |format|
       if @productivity.update(productivity_params)
-        format.html { redirect_to client_productivities_url(@client), notice: 'Productivity was successfully updated.' }
+        format.html { redirect_to productivities_path, notice: 'A produtividade foi alterada com sucesso.' }
         format.json { render :show, status: :ok, location: @productivity }
       else
         format.html { render :edit }
@@ -72,24 +61,21 @@ class ProductivitiesController < ApplicationController
     end
   end
 
-  # DELETE /clients/1/productivities/1
-  # DELETE /clients/1/productivities/1.json
+  # DELETE /productivities/1
+  # DELETE /productivities/1.json
   def destroy
     @productivity.destroy
     respond_to do |format|
-      format.html { redirect_to client_productivities_url(@client), notice: 'Productivity was successfully destroyed.' }
+      format.html { redirect_to productivities_path, notice: 'A produtividade foi removida com sucesso.' }
       format.json { head :no_content }
     end
   end
 
   private
-    def load_client
-      @client = Client.find(params[:client_id])
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_productivity
-      @productivity = @client.productivities.find(params[:id])
+      @productivity = Productivity.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

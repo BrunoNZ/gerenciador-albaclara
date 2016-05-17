@@ -1,19 +1,24 @@
-<h1>Produtividade de <%= @client.name %></h1>
+<h1>Produtividade</h1>
 <ul class="list-inline">
   <li>
-    <%= button_to edit_client_productivity_path(@client,@productivity), method: :get, class: "btn btn-primary" do %>
+    <%= button_to edit_productivity_path(@productivity), method: :get, class: "btn btn-primary" do %>
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
       Editar
     <% end %>
   </li>
   <li>
-    <%= button_to client_productivity_path(@client,@productivity), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+    <%= button_to productivity_path(@productivity), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       Remover
     <% end %>
   </li>
 </ul>
 <br>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @productivity.client.name %>
+</p>
 
 <p>
   <strong>Início da análise:</strong>

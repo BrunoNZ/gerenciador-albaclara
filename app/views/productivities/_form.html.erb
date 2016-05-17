@@ -1,7 +1,8 @@
-<%= simple_form_for([@client,@productivity]) do |f| %>
+<%= simple_form_for(@productivity) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.association :client, :label => "Cliente" %>
     <%= f.input :analysis_start_date, :label => "Início da análise" %>
     <%= f.input :analysis_end_date, :label => "Fim da análise" %>
     <%= f.input :call_qty, :label => "Ligações" %>
