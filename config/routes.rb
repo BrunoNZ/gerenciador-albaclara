@@ -2,8 +2,8 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   root 'schedules#index_all'
 
+  resources :schedules
   resources :clients do
-    resources :schedules
     resources :productivities
   end
   get 'schedules' => 'schedules#index_all'

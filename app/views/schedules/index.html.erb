@@ -1,40 +1,23 @@
-
-<p><%= render partial: 'client_menu' %></p>
-
 <% unless @schedules.nil? %>
 
-  <% unless @client.nil? %>
+  <h1>Agendamentos</h1>
 
-    <h1>Agendamentos de <%= @client.name %></h1>
-
-    <ul class="list-inline">
-      <li>
-        <%= button_to new_client_schedule_path(@client.id), method: :get, class: "btn btn-success" do %>
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
-        <% end %>
-      </li>
-      <li>
-        <%= button_to client_schedules_url(format: "csv"), method: :get, class: "btn btn-default" do %>
-          <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-          Baixar agendamentos de <%= @client.name %>
-        <% end %>
-      </li>
-    </ul>
-
-  <% else %>
-
-    <h1>Agendamentos</h1>
-
-    <ul class="list-inline">
-      <li>
-        <%= button_to schedules_url(format: "csv"), method: :get, class: "btn btn-default" do %>
-          <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-          Baixar todos os agendamentos
-        <% end %>
-      </li>
-    </ul>
-
-  <% end %>
+  <ul class="list-inline">
+    <li>
+      <%= render partial: 'client_menu' %>
+    </li>
+    <li>
+      <%= button_to new_schedule_path, method: :get, class: "btn btn-success" do %>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+      <% end %>
+    </li>
+    <li>
+      <%= button_to schedules_path(format: "csv"), method: :get, class: "btn btn-default" do %>
+        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+        Baixar agendamentos
+      <% end %>
+    </li>
+  </ul>
 
   <%= render partial: 'schedules_table' %>
 

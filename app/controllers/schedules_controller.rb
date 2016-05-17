@@ -1,57 +1,49 @@
 class SchedulesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :load_client, except: [:index_all]
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
   # GET /schedules
   # GET /schedules.json
-  def index_all
-    @schedules = Schedule.all.includes(:client)
-
-    respond_to do |format|
-      format.html {
-        @schedules.order!(updated_at: :desc, created_at: :desc).limit!(100)
-        flash.now[:notice] = "Selecione um cliente"
-        render 'index'
-      }
-      format.csv { send_data @schedules.to_csv }
-    end
-  end
-
-  # GET /clients/1/schedules
-  # GET /clients/1/schedules.json
   def index
-    @schedules = @client.schedules.order(updated_at: :desc, created_at: :desc)
+
+    if params.include? "client" then
+      @schedules = Schedule.where(client: params["client"]).includes(:client)
+      puts "COM_CLIENTE"
+    else
+      @schedules = Schedule.all.includes(:client)
+      puts "SEM_CLIENTE"
+    end
+
     respond_to do |format|
-      format.html
+      format.html { @schedules.order!(updated_at: :desc, created_at: :desc) }
       format.csv { send_data @schedules.to_csv }
     end
   end
 
-  # GET /clients/1/schedules/1
-  # GET /clients/1/schedules/1.json
+  # GET /schedules/1
+  # GET /schedules/1.json
   def show
   end
 
-  # GET /clients/1/schedules/new
+  # GET /schedules/new
   def new
-    @schedule = @client.schedules.new
+    @schedule = Schedule.new
   end
 
-  # GET /clients/1/schedules/1/edit
+  # GET /schedules/1/edit
   def edit
   end
 
-  # POST /clients/1/schedules
-  # POST /clients/1/schedules.json
+  # POST /schedules
+  # POST /schedules.json
   def create
-    @schedule = @client.schedules.new(schedule_params)
+    @schedule = Schedule.new(schedule_params)
 
     respond_to do |format|
       if @schedule.save
         format.html {
-          redirect_to client_schedules_url(@client),
+          redirect_to schedules_path,
             notice: 'O agendamento foi criado com sucesso.'
         }
         format.json { render :show, status: :created, location: @schedule }
@@ -74,7 +66,7 @@ class SchedulesController < ApplicationController
     respond_to do |format|
       if @schedule.update(schedule_params)
         format.html {
-          redirect_to client_schedules_url(@client),
+          redirect_to schedules_path,
             notice: 'O agendamento foi alterado com sucesso.'
         }
         format.json { render :show, status: :ok, location: @schedule }
@@ -96,7 +88,7 @@ class SchedulesController < ApplicationController
     @schedule.destroy
     respond_to do |format|
       format.html {
-        redirect_to client_schedules_path(@client),
+        redirect_to schedules_path,
           notice: 'O agendamento foi removido com sucesso.'
       }
       format.json { head :no_content }
@@ -116,13 +108,9 @@ class SchedulesController < ApplicationController
       return true
     end
 
-    def load_client
-      @client = Client.find(params[:client_id])
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule
-      @schedule = @client.schedules.find(params[:id])
+      @schedule = Schedule.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

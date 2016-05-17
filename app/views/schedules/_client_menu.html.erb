@@ -3,8 +3,9 @@
     Cliente
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
+    <li><%= link_to "Todos os agendamentos", schedules_path %></li>
     <% Client.find_each do |client| %>
-      <li><%= link_to client.name, client_schedules_url(client.id) %></li>
+      <li><%= link_to client.name, schedules_path(:client => client) %></li>
     <% end %>
   </ul>
 </div>

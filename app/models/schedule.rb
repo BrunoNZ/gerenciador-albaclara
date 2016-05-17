@@ -4,6 +4,7 @@ class Schedule < ActiveRecord::Base
   belongs_to :client
   validates_associated :client
 
+  validates :client, presence: true
   validates :name, presence: true
   validates :visit_datetime, presence: true
 

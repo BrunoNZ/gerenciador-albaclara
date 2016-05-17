@@ -7,6 +7,7 @@
   data-show-refresh="true">
   <thead>
     <tr>
+      <th data-field="client" data-sortable="true">Cliente</th>
       <th data-field="name" data-sortable="true">Nome da empresa</th>
       <th data-field="contact_name" data-sortable="true">Nome do contato</th>
       <th data-field="contact_phone" data-sortable="true">Telefone do contato</th>
@@ -21,9 +22,9 @@
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
+        <td><%= schedule.client.name %></td>
         <td>
-          <%= button_to client_schedule_path(schedule.client,schedule), method: :get, class: "btn btn-default" do %>
-            <!-- <span class="glyphicon glyphicon-eye-open view-schedule-btn" aria-hidden="true"></span> -->
+          <%= button_to schedule_path(schedule), method: :get, class: "btn btn-default" do %>
             <%= schedule.name %>
           <% end %>
         </td>
@@ -41,7 +42,7 @@
             <ul class="dropdown-menu">
               <% Schedule.get_valid_status.each do |status,desc|%>
                 <li>
-                  <%= link_to client_schedule_path(schedule.client,schedule,params: {"schedule[status]" => status}),
+                  <%= link_to schedule_path(schedule,params: {"schedule[status]" => status}),
                     method: :put,
                     data: {
                       confirm: status_update_confirmation_message(schedule.get_status_desc,desc)
@@ -62,7 +63,7 @@
 
             <ul class="list-inline">
               <li>
-                <%= link_to client_schedule_path(schedule.client, schedule, params: {"schedule[confirmation_status]" => 1}),
+                <%= link_to schedule_path(schedule, params: {"schedule[confirmation_status]" => 1}),
                   method: :put,
                   data: {
                     confirm: 'Tem certeza que deseja CONFIRMAR esse agendamento?'
@@ -71,7 +72,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to client_schedule_path(schedule.client, schedule, params: {"schedule[confirmation_status]" => 2}),
+                <%= link_to schedule_path(schedule, params: {"schedule[confirmation_status]" => 2}),
                   method: :put,
                   data: {
                     confirm: 'Tem certeza que deseja DESCONFIRMAR esse agendamento?'
