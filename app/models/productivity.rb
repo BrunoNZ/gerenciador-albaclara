@@ -4,6 +4,7 @@ class Productivity < ActiveRecord::Base
   belongs_to :client
   validates_associated :client
 
+  validates :client, presence: true
   validates :analysis_start_date, presence: true
   validates :analysis_end_date, presence: true
 
