@@ -9,10 +9,8 @@ class SchedulesController < ApplicationController
 
     if params.include? "client" then
       @schedules = Schedule.where(client: params["client"]).includes(:client)
-      puts "COM_CLIENTE"
     else
       @schedules = Schedule.all.includes(:client)
-      puts "SEM_CLIENTE"
     end
 
     respond_to do |format|
