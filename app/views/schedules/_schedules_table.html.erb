@@ -7,6 +7,7 @@
   data-show-refresh="true">
   <thead>
     <tr>
+      <th></th>
       <th data-field="client" data-sortable="true">Cliente</th>
       <th data-field="name" data-sortable="true">Nome da empresa</th>
       <th data-field="contact_name" data-sortable="true">Nome do contato</th>
@@ -22,12 +23,13 @@
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%= schedule.client.name %></td>
-        <td>
+        <td class="view-btn-field">
           <%= button_to schedule_path(schedule), method: :get, class: "btn btn-default" do %>
-            <%= schedule.name %>
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
           <% end %>
         </td>
+        <td><%= schedule.client.name %></td>
+        <td><%= schedule.name %></td>
         <td><%= schedule.contact_name %></td>
         <td><%= schedule.contact_phone %></td>
         <td><%= schedule.contact_date %></td>
