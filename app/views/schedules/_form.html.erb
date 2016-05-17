@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :client, selected: params[:client_id], :label => "Cliente" %>
+    <%= f.association :client, :label => "Cliente" %>
     <%= f.input :name, :label => "Nome da empresa"  %>
     <%= f.input :contact_name, :label => "Nome do contato" %>
     <%= f.input :contact_phone, :label => "Telefone do contato" %>
