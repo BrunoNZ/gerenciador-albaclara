@@ -1,7 +1,8 @@
-<%= simple_form_for([@client,@schedule]) do |f| %>
+<%= simple_form_for(@schedule) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.association :client, selected: params[:client_id], :label => "Cliente" %>
     <%= f.input :name, :label => "Nome da empresa"  %>
     <%= f.input :contact_name, :label => "Nome do contato" %>
     <%= f.input :contact_phone, :label => "Telefone do contato" %>

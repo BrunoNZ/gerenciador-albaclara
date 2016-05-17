@@ -1,13 +1,13 @@
 <h1><%= @schedule.name %></h1>
 <ul class="list-inline">
   <li>
-    <%= button_to edit_client_schedule_path(@client,@schedule), method: :get, class: "btn btn-primary" do %>
+    <%= button_to edit_schedule_path(@schedule), method: :get, class: "btn btn-primary" do %>
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
       Editar
     <% end %>
   </li>
   <li>
-    <%= button_to client_schedule_path(@client,@schedule), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+    <%= button_to schedule_path(@schedule), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       Remover
     <% end %>
