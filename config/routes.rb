@@ -1,6 +1,6 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
-  root 'schedules#index_all'
+  root 'schedules#index'
 
   resources :clients
   resources :schedules
