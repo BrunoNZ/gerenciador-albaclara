@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Supervisores</h1>
+
+<ul class="list-inline">
+  <li>
+    <%= button_to new_supervisor_path, method: :get, class: "btn btn-success" do %>
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+    <% end %>
+  </li>
+</ul>
+
+<table id="table"
+  class="table table-hover"
+  data-toggle="table"
+  data-search="true">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @supervisors.each do |supervisor| %>
+      <tr>
+        <td class="view-btn-field">
+          <%= button_to supervisor, method: :get, class: "btn btn-default" do %>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          <% end %>
+        </td>
+        <td><%= supervisor.name %></td>
+        <td><%= supervisor.email %></td>
+        <td><%= supervisor.phone %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

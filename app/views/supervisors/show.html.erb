@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Supervisor</h1>
+
+<ul class="list-inline">
+  <li>
+    <%= button_to edit_supervisor_path(@supervisor), method: :get, class: "btn btn-primary" do %>
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+      Editar
+    <% end %>
+  </li>
+  <li>
+    <%= button_to supervisors_path(@supervisor), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      Remover
+    <% end %>
+  </li>
+</ul>
+<br>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @supervisor.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @supervisor.email %>
+</p>
+
+<p>
+  <strong>Telefone:</strong>
+  <%= @supervisor.phone %>
+</p>

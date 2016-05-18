@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
-  root 'schedules#index'
 
+  resources :supervisors
   resources :clients
   resources :schedules
   resources :productivities
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     put 'users' => 'devise/registrations#update', :as => 'user_registration'
   end
 
+  root 'schedules#index'
   # mount Sidekiq::Web => '/sidekiq'
 
 end
