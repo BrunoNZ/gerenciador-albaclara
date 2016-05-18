@@ -1,31 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Supervisors</h1>
+<h1>Supervisores</h1>
 
-<table>
+<ul class="list-inline">
+  <li>
+    <%= button_to new_supervisor_path, method: :get, class: "btn btn-success" do %>
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+    <% end %>
+  </li>
+</ul>
+
+<table id="table"
+  class="table table-hover"
+  data-toggle="table"
+  data-search="true">
   <thead>
     <tr>
-      <th>Name</th>
+      <th></th>
+      <th>Nome</th>
       <th>Email</th>
-      <th>Phone</th>
-      <th colspan="3"></th>
+      <th>Telefone</th>
     </tr>
   </thead>
 
   <tbody>
     <% @supervisors.each do |supervisor| %>
       <tr>
+        <td class="view-btn-field">
+          <%= button_to supervisor, method: :get, class: "btn btn-default" do %>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          <% end %>
+        </td>
         <td><%= supervisor.name %></td>
         <td><%= supervisor.email %></td>
         <td><%= supervisor.phone %></td>
-        <td><%= link_to 'Show', supervisor %></td>
-        <td><%= link_to 'Edit', edit_supervisor_path(supervisor) %></td>
-        <td><%= link_to 'Destroy', supervisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Supervisor', new_supervisor_path %>
