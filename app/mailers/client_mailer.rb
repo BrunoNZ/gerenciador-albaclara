@@ -1,12 +1,17 @@
 class ClientMailer < ApplicationMailer
 
+  before_action :set_supervisors
+
   def active_schedules(client)
     @client = client
     @schedules = @client.find_active_schedules
 
     unless @schedules.nil? then
-      mail(to: contacts_of(@client),
-        subject: 'ALBACLARA - Agenda consolidada')
+      mail(
+        to: contacts_of(@client),
+        cc: @supervisors,
+        subject: 'ALBACLARA - Agenda consolidada'
+      )
     end
   end
 
@@ -15,8 +20,11 @@ class ClientMailer < ApplicationMailer
     @client = @schedule.client
 
     unless @schedule.nil? then
-      mail(to: contacts_of(@client),
-        subject: 'ALBACLARA - Novo agendamento')
+      mail(
+        to: contacts_of(@client),
+        cc: @supervisors,
+        subject: 'ALBACLARA - Novo agendamento'
+      )
     end
   end
 
@@ -33,9 +41,12 @@ class ClientMailer < ApplicationMailer
     end
 
     unless @schedule.nil? then
-      mail(to: contacts_of(@client),
+      mail(
+        to: contacts_of(@client),
+        cc: @supervisors,
         subject: subject,
-        template_name: template)
+        template_name: template
+      )
     end
   end
 
@@ -44,15 +55,26 @@ class ClientMailer < ApplicationMailer
     @productivity = @client.find_last_productivity
 
     unless @productivity.nil? then
-      mail(to: contacts_of(@client),
-        subject: 'ALBACLARA - Atualização da produtividade')
+      mail(
+        to: contacts_of(@client),
+        cc: @supervisors,
+        subject: 'ALBACLARA - Atualização da produtividade'
+      )
     end
   end
 
   private
 
+  def set_supervisors
+    @supervisors = Supervisor.all.map{|supervisor|
+      "#{supervisor.name} <#{supervisor.email}>"
+    }
+  end
+
   def contacts_of(client)
-    return @client.contacts.map {|contact| "#{contact.name} <#{contact.email}>"}
+    return @client.contacts.map {|contact|
+      "#{contact.name} <#{contact.email}>"
+    }
   end
 
 end
