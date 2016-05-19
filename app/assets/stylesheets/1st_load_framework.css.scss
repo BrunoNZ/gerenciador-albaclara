@@ -1,6 +1,13 @@
 // import the CSS framework
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-theme-lumen";
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/assets/bootstrap/glyphicons-halflings-regular.eot');
+  src: url('/assets/bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/bootstrap/glyphicons-halflings-regular.woff2') format('woff2'), url('/assets/bootstrap/glyphicons-halflings-regular.woff') format('woff'), url('/assets/bootstrap/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
 
 // make all images responsive by default
 img {
@@ -35,8 +42,6 @@ img {
 // to make views framework-neutral
 main {
   @extend .container;
-  background-color: #eee;
-  padding-bottom: 80px;
   width: 100%;
   margin-top: 51px; // accommodate the navbar
   }

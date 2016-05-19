@@ -1,3 +1,5 @@
+<div class="col-lg-6">
+<div class="well bs-component live-less-editor-hovercontainer" >
 <%= simple_form_for(@client) do |f| %>
   <%= f.error_notification %>
 
@@ -8,18 +10,21 @@
     <%= f.input :contract_start_date, :label => "Início do contrato" %>
   </div>
 
-  <h3>Contatos</h3>
-  <%= f.fields_for :contacts do |contact| %>
-    <%= render "contact_fields", :f => contact %>
-  <% end %>
-
+  <fieldset>
+    <legend>Contatos</legend>
+    <div class="form-actions">
+      <%= link_to_add_association 'Adicionar contato', f, :contacts,
+        :class => "btn btn-default", :render_options => {:display => 'inline' } %>
+    </div>
+    <%= f.fields_for :contacts do |contact| %>
+      <%= render "contact_fields", :f => contact %>
+    <% end %>
+  </fieldset>
+  <br>
   <div class="form-actions">
-    <p>
-    <%= link_to_add_association 'Adicionar contato', f, :contacts,
-      :class => "btn btn-primary", :render_options => {:display => 'inline' } %>
-    </p>
-    <p>
-    <%= f.button :submit, :class => "btn btn-success" %>
-  </p>
+    <%= f.button :submit, "Salvar", class: "btn btn-primary" %>
+    <%= link_to "Voltar", :back,  class: "btn btn-warning" %>
   </div>
 <% end %>
+</div>
+</div>

@@ -15,17 +15,13 @@
  *= require_self
  */
 
+// Replace: "../fonts" FOR "/assets/bootstrap"
+// on themes created via: http://bootstrap-live-customizer.com/
+
 .navbar-brand > img
 {
   margin-top: -7px;
   height: 36px;
-}
-
-.action-btns
-{
-  text-align: center;
-  vertical-align: middle;
-  width: 200px;
 }
 
 .view-btn-field
