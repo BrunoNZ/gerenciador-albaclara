@@ -5,13 +5,12 @@
   data-toggle="table"
   data-search="true"
   data-pagination="false"
-  data-show-export="true"
   data-show-columns="true"
   data-show-refresh="true"
   >
   <thead>
     <tr>
-      <th></th>
+      <th data-switchable="false"></th>
       <% @dates.each do |d| %>
         <th data-sortable="true"><%= get_date_name(d) %></th>
       <% end %>
