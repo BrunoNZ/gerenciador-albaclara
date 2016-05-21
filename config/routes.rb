@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     put 'users' => 'devise/registrations#update', :as => 'user_registration'
   end
 
-  root 'schedules#index'
+  root 'pages#index'
   # mount Sidekiq::Web => '/sidekiq'
 
 end
