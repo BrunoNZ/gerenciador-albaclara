@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>Título:</strong>
   <%= @document.title %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Decrição:</strong>
   <%= @document.description %>
+</p>
+
+<p>
+  <strong>Arquivo:</strong>
+  <%= link_to "Download", @document.file.url(:original, false) %>
 </p>
 
 <%= link_to 'Edit', edit_document_path(@document) %> |
