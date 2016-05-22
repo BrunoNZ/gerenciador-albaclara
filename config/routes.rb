@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get 'schedules/:id' => 'schedules#show'
   end
 
+  get 'hellobi' => 'pages#hellobi'
+
   root 'pages#index'
   # mount Sidekiq::Web => '/sidekiq'
 
