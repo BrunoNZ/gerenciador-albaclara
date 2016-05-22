@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
 
+  devise_for :users
+  resources :users
+
   resources :documents
   resources :supervisors
   resources :clients
@@ -10,12 +13,6 @@ Rails.application.routes.draw do
   namespace 'report' do
     get 'schedules' => 'schedules#index'
     get 'schedules/:id' => 'schedules#show'
-  end
-
-  devise_for :users, :skip => [:registrations]
-  as :user do
-    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-    put 'users' => 'devise/registrations#update', :as => 'user_registration'
   end
 
   root 'pages#index'
