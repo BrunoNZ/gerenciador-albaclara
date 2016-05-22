@@ -10,7 +10,7 @@ puts 'CREATED ADMIN USER: ' << user.email
 
 if Rails.env.development?
 
-  (1..2).each do |client|
+  (1..10).each do |client|
     puts 'CRIANDO CLIENTE: ' << client.to_s
     Client.create(
       name: "Cliente #{client.to_s}",
@@ -34,7 +34,7 @@ if Rails.env.development?
 
   Client.all.each do |client|
     puts 'CRIANDO AGENDAMENTOS PARA CLIENTE: ' << client.name
-    (1..100).each do |schedule|
+    (1..10).each do |schedule|
       # puts ' --> AGENDAMENTO: ' << schedule.to_s
       contact_date = Faker::Date.between(1.year.ago,Time.now)
       visit_datetime = Faker::Time.between(contact_date + 2.days, contact_date + 21.days)
