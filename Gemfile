@@ -33,6 +33,7 @@ gem 'sinatra', :require => nil
 gem 'whenever'
 gem 'cocoon'
 gem 'premailer'
+gem 'paperclip'
 
 group :development, :test do
   gem 'faker'

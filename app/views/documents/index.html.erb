@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Documentos</h1>
+
+<ul class="list-inline">
+  <li>
+    <%= button_to new_document_path, method: :get, class: "btn btn-success" do %>
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      Novo
+    <% end %>
+  </li>
+</ul>
+
+<table id="table"
+  class="table table-hover table-striped"
+  data-toggle="table"
+  data-search="true"
+  data-pagination="false"
+  data-show-columns="false"
+  data-show-refresh="false">
+  <thead>
+    <tr>
+      <th data-switchable="false"></th>
+      <th data-field="title" data-sortable="true">Título</th>
+      <th data-field="description" data-sortable="true">Descrição</th>
+      <th data-switchable="false"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td class="view-btn-field">
+          <%= button_to document, method: :get, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          <% end %>
+        </td>
+        <td><%= document.title %></td>
+        <td><%= document.description %></td>
+        <td class="view-btn-field">
+          <%= button_to document.file.url(:original, false), method: :get, class: "btn btn-primary" do %>
+          <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+          Download
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

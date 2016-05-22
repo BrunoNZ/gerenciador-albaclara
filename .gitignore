@@ -21,4 +21,5 @@ Gemfile.lock
 /public/assets
 /config/secrets.yml
 /config/database.yml
+/public/system/documents/files/*
 # ignore server scripts
