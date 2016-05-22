@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
 
+  devise_for :users
+  resources :users
+
   resources :documents
   resources :supervisors
   resources :clients
@@ -12,11 +15,7 @@ Rails.application.routes.draw do
     get 'schedules/:id' => 'schedules#show'
   end
 
-  devise_for :users, :skip => [:registrations]
-  as :user do
-    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-    put 'users' => 'devise/registrations#update', :as => 'user_registration'
-  end
+  get 'hellobi' => 'pages#hellobi'
 
   root 'pages#index'
   # mount Sidekiq::Web => '/sidekiq'
