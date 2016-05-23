@@ -57,8 +57,8 @@ class SchedulesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /clients/1/schedules/1
-  # PATCH/PUT /clients/1/schedules/1.json
+  # PATCH/PUT /schedules/1
+  # PATCH/PUT /schedules/1.json
   def update
     status_changed = detect_confirmation_status_changed(@schedule, schedule_params)
     respond_to do |format|
@@ -80,8 +80,8 @@ class SchedulesController < ApplicationController
     end
   end
 
-  # DELETE /clients/1/schedules/1
-  # DELETE /clients/1/schedules/1.json
+  # DELETE /schedules/1
+  # DELETE /schedules/1.json
   def destroy
     @schedule.destroy
     respond_to do |format|
