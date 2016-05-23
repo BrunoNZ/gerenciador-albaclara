@@ -1,8 +1,14 @@
+<p id="notice"><%= notice %></p>
+
 <h1>Usuários</h1>
 
-<%= button_to new_user_registration_path, method: :get, class: "btn btn-success" do %>
-  <span class="glyphicon glyphicon-plus" aria-hidden="true">Novo</span>
-<% end %>
+<ul class="list-inline">
+  <li>
+    <%= button_to new_user_registration_path, method: :get, class: "btn btn-success" do %>
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+    <% end %>
+  </li>
+</ul>
 
 <table id="table"
   class="table table-hover"
@@ -12,19 +18,43 @@
   data-pagination="true">
   <thead>
     <tr>
+      <th></th>
       <th>Nome</th>
       <th>Email</th>
-      <th>Tipo</th>
-      <!-- <th></th> -->
+      <th>Perfil</th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= link_to user.name, user_path(user) %></td>
+        <td class="view-btn-field">
+          <%= button_to user_path(user), method: :get, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          <% end %>
+        </td>
+        <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= user.role %></td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle status-desc-menu-btn" type="button" data-toggle="dropdown">
+              <%= user.role %>
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <% User.roles.each do |desc,role|%>
+                <li>
+                  <%= link_to user_path(user, params: {"user[role]" => desc}),
+                    method: :put,
+                    data: {
+                      confirm: role_update_confirmation_message(user.role,desc)
+                    } do %>
+                    <%= desc %>
+                  <%end%>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
