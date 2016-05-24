@@ -18,6 +18,11 @@
 // Replace: "../fonts" FOR "/assets/bootstrap"
 // on themes created via: http://bootstrap-live-customizer.com/
 
+.alert
+{
+  z-index: 1;
+  position: relative;;
+}
 .navbar-brand > img
 {
   margin-top: -7px;
