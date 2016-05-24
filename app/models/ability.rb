@@ -18,11 +18,11 @@ class Ability
 
     when 'user'
       can :crud, :all
-      can :read, Page
+      cannot :crud, Supervisor
+      cannot :crud, User
       cannot :create, Document
       cannot :update, Document
       cannot :destroy, Document
-      cannot :crud, User
 
     else
       cannot :crud, :all
