@@ -1,14 +1,14 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Documentos</h1>
 
 <ul class="list-inline">
+  <% if can? :create, Document %>
   <li>
     <%= button_to new_document_path, method: :get, class: "btn btn-success" do %>
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
       Novo
     <% end %>
   </li>
+  <% end %>
 </ul>
 
 <table id="table"

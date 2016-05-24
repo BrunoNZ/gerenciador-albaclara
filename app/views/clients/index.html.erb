@@ -1,12 +1,14 @@
 <h1>Clientes</h1>
 
 <ul class="list-inline">
+  <% if can? :create, Client %>
   <li>
     <%= button_to new_client_path, method: :get, class: "btn btn-success" do %>
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
       Novo
     <% end %>
   </li>
+  <% end %>
   <li>
     <%= button_to clients_url(format: "csv"), method: :get, class: "btn btn-default" do %>
       <span class="glyphicon glyphicon-download" aria-hidden="true"></span>

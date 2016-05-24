@@ -1,4 +1,8 @@
 class SupervisorsController < ApplicationController
+
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
   before_action :set_supervisor, only: [:show, :edit, :update, :destroy]
 
   # GET /supervisors
