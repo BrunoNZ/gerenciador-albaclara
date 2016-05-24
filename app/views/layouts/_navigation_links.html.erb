@@ -12,7 +12,9 @@
       <li><%= link_to 'Agendamentos', schedules_path %></li>
       <li><%= link_to 'Produtividade', productivities_path %></li>
       <li><%= link_to 'Relatórios', report_schedules_path %></li>
-      <li><%= link_to 'Supervisores', supervisors_path %></li>
+      <% if can? :read, Supervisor %>
+        <li><%= link_to 'Supervisores', supervisors_path %></li>
+      <% end %>
     </ul>
   </li>
   <li><%= link_to 'Documentos', documents_path %></li>

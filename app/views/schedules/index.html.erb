@@ -6,11 +6,15 @@
     <li>
       <%= render partial: 'client_menu' %>
     </li>
+
+    <% if can? :create, Schedule %>
     <li>
       <%= button_to new_schedule_path, method: :get, class: "btn btn-success" do %>
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
       <% end %>
     </li>
+    <% end %>
+
     <li>
       <%= button_to schedules_path(format: "csv"), method: :get, class: "btn btn-default" do %>
         <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
