@@ -29,7 +29,21 @@ class Document < ActiveRecord::Base
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "application/vnd.openxmlformats-officedocument.spreadsheetml.template",
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.template"
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.template",
+        "application/vnd.oasis.opendocument.chart",
+        "application/vnd.oasis.opendocument.database",
+        "application/vnd.oasis.opendocument.formula",
+        "application/vnd.oasis.opendocument.graphics",
+        "application/vnd.oasis.opendocument.graphics-template",
+        "application/vnd.oasis.opendocument.image",
+        "application/vnd.oasis.opendocument.presentation",
+        "application/vnd.oasis.opendocument.presentation-template",
+        "application/vnd.oasis.opendocument.spreadsheet",
+        "application/vnd.oasis.opendocument.spreadsheet-template",
+        "application/vnd.oasis.opendocument.text",
+        "application/vnd.oasis.opendocument.text-master",
+        "application/vnd.oasis.opendocument.text-template",
+        "application/vnd.oasis.opendocument.text-web",
       ]
     }
 end
