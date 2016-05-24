@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
+  load_and_authorize_resource
+
   before_action :set_user, only: [:show, :update, :destroy]
   before_filter :verify_self_update, only: [:update]
 
