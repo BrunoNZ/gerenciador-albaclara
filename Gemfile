@@ -34,6 +34,7 @@ gem 'whenever'
 gem 'cocoon'
 gem 'premailer'
 gem 'paperclip'
+gem "cancan"
 
 group :development, :test do
   gem 'faker'
