@@ -30,14 +30,14 @@
   <tbody>
     <% @documents.each do |document| %>
       <tr>
-        <td class="view-btn-field">
+        <td class="btn-field view-btn-field">
           <%= button_to document, method: :get, class: "btn btn-default" do %>
           <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
           <% end %>
         </td>
         <td><%= document.title %></td>
         <td><%= document.description %></td>
-        <td class="view-btn-field">
+        <td class="btn-field">
           <%= button_to document.file.url(:original, false), method: :get, class: "btn btn-primary" do %>
           <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
           Download

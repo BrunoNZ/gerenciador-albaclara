@@ -23,14 +23,20 @@
   z-index: 1;
   position: relative;;
 }
+
 .navbar-brand > img
 {
   margin-top: -7px;
   height: 36px;
 }
 
-.view-btn-field
+.btn-field
 {
   text-align: center;
   vertical-align: middle;
+}
+
+.view-btn-field
+{
+  width: 60px;
 }
