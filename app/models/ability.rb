@@ -12,13 +12,18 @@ class Ability
 
     case user.role
 
-    when 'registered'
-      cannot :crud, :all
-      cannot :view, :hellobi
-
     when 'admin'
       can :crud, :all
       can :view, :hellobi
+
+    when 'supervisor'
+      can :crud, :all
+      can :view, :hellobi
+      cannot :crud, Supervisor
+      cannot :crud, User
+      cannot :create, Document
+      cannot :update, Document
+      cannot :destroy, Document
 
     when 'user'
       can :crud, :all
