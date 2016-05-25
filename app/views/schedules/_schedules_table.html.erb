@@ -24,14 +24,13 @@
     <% @schedules.each do |schedule| %>
       <tr>
         <td class="btn-field view-btn-field">
-          <%= button_to schedule_path(schedule), method: :get, class: "btn btn-default" do %>
+          <%= link_to schedule, class: "btn btn-default" do %>
           <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
           <% end %>
         </td>
-        <td class="btn-field">
-          <%= button_to schedule.client, method: :get, class: "btn btn-default" do %>
-          <span class="" aria-hidden="true"></span>
-          <%= schedule.client.name %>
+        <td>
+          <%= link_to schedule.client, class: "btn btn-default" do %>
+            <%= schedule.client.name %>
           <% end %>
         </td>
         <td><%= schedule.name %></td>

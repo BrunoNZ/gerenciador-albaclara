@@ -36,7 +36,7 @@
     <% @clients.each do |client| %>
       <tr>
         <td>
-          <%= button_to client, method: :get, class: "btn btn-default" do %>
+          <%= link_to client, class: "btn btn-default" do %>
             <%= client.name %>
           <% end %>
         </td>
