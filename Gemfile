@@ -40,3 +40,7 @@ gem 'cancancan'
 group :development, :test do
   gem 'faker'
 end
+
+group :development do
+  gem 'mailcatcher'
+end
