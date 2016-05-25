@@ -8,10 +8,6 @@ class ApplicationController < ActionController::Base
     redirect_to (request.referer ? :back : root_path), alert: 'Acesso negado.'
   end
 
-  rescue_from ActiveModel::ForbiddenAttributesError do |exception|
-    redirect_to (request.referer ? :back : root_path), alert: "Atributo não permitido."
-  end
-
   private
 
   def authenticate_admin!
