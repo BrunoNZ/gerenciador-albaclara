@@ -7,14 +7,9 @@ class Document < ActiveRecord::Base
 
   # Validate filename
   validates_attachment_file_name :file,
-    matches: [
-      /pdf\Z/, /txt\Z/, /png\Z/, /jpe?g\Z/,
-      /docx?\Z/, /pptx?\Z/, /xlsx?\Z/, /pps\Z/, /odt\Z/
-    ]
+    matches: Paperclip.options[:valid_file_names]
 
   # Explicitly do not validate
   do_not_validate_attachment_file_type :file
-
-  puts Paperclip.options[:valid_content_types]
 
 end
