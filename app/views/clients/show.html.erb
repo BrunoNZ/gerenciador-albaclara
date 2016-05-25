@@ -45,7 +45,12 @@
   <strong>Contatos:</strong>
   <ul>
     <% @client.contacts.each do |contact| %>
-      <li>Nome: <%= contact.name %> | Email: <%= contact.email %> | Telefone: <%= contact.phone %></li>
+      <li><%= contact.name %></li>
+      <ul>
+        <li><strong>Email:</strong> <%= contact.email %></li>
+        <li><strong>Telefone:</strong> <%= contact.phone %></li>
+      </ul>
+      <br>
     <% end %>
   </ul>
 </p>
