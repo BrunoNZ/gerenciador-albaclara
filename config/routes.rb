@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   get 'hellobi' => 'pages#hellobi'
 
   root 'pages#index'
-  # mount Sidekiq::Web => '/sidekiq'
+  mount Sidekiq::Web => '/sidekiq'
 
 end
