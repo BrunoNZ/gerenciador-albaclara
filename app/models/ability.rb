@@ -1,7 +1,9 @@
 class Ability
   include CanCan::Ability
 
-  # Based on: https://github.com/ryanb/cancan
+  # Based on:
+  # - https://github.com/CanCanCommunity/cancancan/wiki
+  # - https://github.com/CanCanCommunity/cancancan/wiki/Non-RESTful-Controllers
   def initialize(user)
 
     alias_action :create, :read, :update, :destroy, :to => :crud
@@ -12,12 +14,15 @@ class Ability
 
     when 'registered'
       cannot :crud, :all
+      cannot :view, :hellobi
 
     when 'admin'
       can :crud, :all
+      can :view, :hellobi
 
     when 'user'
       can :crud, :all
+      can :view, :hellobi
       cannot :crud, Supervisor
       cannot :crud, User
       cannot :create, Document
@@ -26,6 +31,7 @@ class Ability
 
     else
       cannot :crud, :all
+      cannot :view, :hellobi
 
     end
 

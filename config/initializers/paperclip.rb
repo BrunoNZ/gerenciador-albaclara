@@ -1,6 +1,12 @@
 # ImageMagick must be installed
 # PATH OF: $ which convert
 Paperclip.options[:command_path] = "/usr/local/bin/"
+
+Paperclip.options[:valid_file_names] = [
+  /pdf\Z/, /txt\Z/, /png\Z/, /jpe?g\Z/,
+  /docx?\Z/, /pptx?\Z/, /xlsx?\Z/, /pps\Z/, /odt\Z/
+]
+
 Paperclip.options[:valid_content_types] = %w(
   text/plain
   application/pdf
