@@ -32,7 +32,7 @@ class SupervisorsController < ApplicationController
 
     respond_to do |format|
       if @supervisor.save
-        format.html { redirect_to @supervisor, notice: 'Supervisor was successfully created.' }
+        format.html { redirect_to @supervisor, notice: 'O supervisor foi criado com sucesso.' }
         format.json { render :show, status: :created, location: @supervisor }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class SupervisorsController < ApplicationController
   def update
     respond_to do |format|
       if @supervisor.update(supervisor_params)
-        format.html { redirect_to @supervisor, notice: 'Supervisor was successfully updated.' }
+        format.html { redirect_to @supervisor, notice: 'O supervisor foi alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @supervisor }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class SupervisorsController < ApplicationController
   def destroy
     @supervisor.destroy
     respond_to do |format|
-      format.html { redirect_to supervisors_url, notice: 'Supervisor was successfully destroyed.' }
+      format.html { redirect_to supervisors_url, notice: 'O supervisor foi removido com sucesso.' }
       format.json { head :no_content }
     end
   end
