@@ -13,7 +13,10 @@
 
   <% if can? :destroy, @client %>
   <li>
-    <%= button_to @client, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger" do %>
+    <%= button_to @client,
+        method: :delete,
+        data: { confirm: client_destroy_confirmation_message },
+        class: "btn btn-danger" do %>
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       Remover
     <% end %>

@@ -2,9 +2,9 @@ require 'csv'
 
 class Client < ActiveRecord::Base
 
-  has_many :contacts
-  has_many :schedules
-  has_many :productivities
+  has_many :contacts, :dependent => :delete_all
+  has_many :schedules, :dependent => :delete_all
+  has_many :productivities, :dependent => :delete_all
 
   accepts_nested_attributes_for :contacts, :reject_if => :all_blank, :allow_destroy => true
 
