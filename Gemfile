@@ -28,6 +28,7 @@ group :development do
   gem 'rails_layout'
 end
 
+gem 'thin'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem 'whenever'
