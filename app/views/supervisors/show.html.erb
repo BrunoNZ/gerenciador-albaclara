@@ -13,7 +13,7 @@
 
   <% if can? :destroy, @supervisor %>
   <li>
-    <%= button_to supervisors_path(@supervisor), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>
+    <%= button_to @supervisor, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger" do %>
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       Remover
     <% end %>
