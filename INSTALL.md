@@ -1,28 +1,20 @@
-Swap (RPi)
-----------
-```bash
-$ sudo dd if=/dev/zero of=/swap bs=1M count=1024 && sudo mkswap /swap && sudo swapon /swap
-```
-
 Dependências
 ------------
-
 ```bash
-$ sudo apt-get install vim git postgresql libcurl4-openssl-dev apache2-mpm-worker apache2-threaded-dev libapr1-dev libaprutil1-dev gawk libreadline6-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+$ apt-get install vim git postgresql redis-server libcurl4-openssl-dev apache2-mpm-worker apache2-threaded-dev libapr1-dev libaprutil1-dev gawk libreadline6-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
 
-$ sudo apt-get install -y nodejs && sudo ln -sf /usr/bin/nodejs /usr/local/bin/node
+$ apt-get install -y nodejs && ln -sf /usr/bin/nodejs /usr/local/bin/node
 ```
 
 Usuário
 -------
 Criar um usuário para armazenar o sistema:
 ```bash
-$ sudo adduser gerenciador
-$ sudo adduser gerenciador sudo
+$ adduser gerenciador
 ```
 Logar no usuário
 ```bash
-$ sudo su - gerenciador
+$ su - gerenciador
 ```
 
 RVM
@@ -42,32 +34,29 @@ Passenger + Apache2
 Seguir os passos do: [Tutorial Oficial](https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/apache/oss/install_language_runtime.html)
 
 ```bash
-$ gem install passenger
 $ passenger-install-apache2-module
-$ rvmsudo passenger-config validate-install
 ```
 
 Sidekiq
 -------
 Adicione o Sidekiq ao Systemclt:
 ```bash
-$ wget https://raw.githubusercontent.com/mperham/sidekiq/master/examples/systemd/sidekiq.service
-$ sudo cp sidekiq.servicesidekiq.service /lib/systemd/system
-$ sudo systemctl enable sidekiq
+$ cp /home/gerenciador/AlbaclaraGerenciador/utils/init_services/systemd/*.service /lib/systemd/system
+$ systemctl enable sidekiq
 ```
 
 Adicione o Sidekiq ao Upstart:
 ```bash
-$ wget https://raw.githubusercontent.com/mperham/sidekiq/master/examples/upstart/sidekiq.conf
-$ wget
+$ cp /home/gerenciador/AlbaclaraGerenciador/utils/init_services/upstart/*.conf /etc/init/
+$ initctl start workers
 ```
 
 PostgreSQL
 ----------
 Criar um novo usuário:
 ```bash
-$ sudo su - postgres
-$ psql -c "CREATE USER <DATABASE_USER> WITH ENCRYPTED PASSWORD '<DATABASE_PASSWORD>'"
+$ su postgres
+$ createuser --no-superuser --createdb --pwprompt AlbaclaraGerenciador
 ```
 
 Git
@@ -86,7 +75,7 @@ $ git config --global user.email "gerenciador@albaclara"
 ```
 Clonar o repositório:
 ```bash
-$ git clone
+$ git clone git@gitlab.c3sl.ufpr.br:bnzanette/AlbaclaraGerenciador.git
 ```
 
 Deploy
@@ -96,18 +85,20 @@ Criar uma secret-key:
 $ rake secret
 ```
 
-Adicionar ao arquivo "~/.bashrc":
+Adicionar ao arquivo "~/.bash_profile":
 ```bash
 export RAILS_ENV="production"
 export SECRET_KEY_BASE="<SECRET_KEY>"
 
-export ADMIN_EMAIL="admin@admin.com"
-export ADMIN_PASSWORD="password"
+export DATABASE_PASSWORD=""
 
-export EMAIL_PROVIDER_USERNAME="email@provider.com"
-export EMAIL_PROVIDER_PASSWORD="password"
+export ADMIN_EMAIL=""
+export ADMIN_PASSWORD=""
 
-export ADMIN_EMAIL="production"
+export EMAIL_PROVIDER_USERNAME=""
+export EMAIL_PROVIDER_PASSWORD=""
+
+export HELLOBI_IFRAME_URL=""
 ```
 
 Instalar gemas:
